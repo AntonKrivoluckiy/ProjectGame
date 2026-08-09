@@ -12,6 +12,7 @@ script = ExtResource("1_elqb8")
 
 [node name="Camera2D" type="Camera2D" parent="MapGenerator" unique_id=375413344]
 position = Vector2(1000, 750)
+zoom = Vector2(1.5, 1.5)
 script = ExtResource("3_rarhs")
 
 [node name="ConsoleUI" parent="MapGenerator/Camera2D" unique_id=295049646 instance=ExtResource("2_rvslj")]
@@ -20,9 +21,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -750.0
-offset_top = -500.0
-offset_right = 750.0
-offset_bottom = 500.0
+offset_left = -500.0
+offset_top = -300.0
+offset_right = 500.0
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2

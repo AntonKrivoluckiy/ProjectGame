@@ -1,7 +1,7 @@
 extends Node2D
 
-var MapWidth = 2000
-var MapHeight = 2000
+var MapWidth = 1024
+var MapHeight = 1024
 var NoiseScale = 0.004
 var TileSize = 16
 
@@ -16,106 +16,6 @@ var BigforestThreshold = -0.75
 var HillsThreshold = -0.8
 var MountainThreshold = -0.85
 var SnowmountainThreshold = -0.9
-
-var region_info_mode = false
-
-enum TileType{
-	Deepwater,
-	Water,
-	Sandwater,
-	Beach,
-	Field,
-	Smalforest,
-	Forest,
-	Bigforest,
-	Hills,
-	Mountain,
-	Snowmountain
-}
-
-func GetTileType(type: int) -> CellData:
-	var data = CellData.new()
-	data.tile_type = type
-	
-	match type:
-		TileType.Deepwater:
-			data.walk = false
-			data.walk_speed = 0.0
-			data.fertility = 0.0
-			data.swim = true
-			data.swim_speed = 0.3
-			data.can_have_builds = false
-		TileType.Water:
-			data.walk = false
-			data.walk_speed = 0.0
-			data.fertility = 0.0
-			data.swim = true
-			data.swim_speed = 0.5
-			data.can_have_builds = false
-		TileType.Sandwater:
-			data.walk = false
-			data.walk_speed = 0.0
-			data.fertility = 0.0
-			data.swim = true
-			data.swim_speed = 0.6
-			data.can_have_builds = false
-		TileType.Beach:
-			data.walk = true
-			data.walk_speed = 0.4
-			data.fertility = 0.3
-			data.swim = false
-			data.swim_speed = 0.0
-			data.can_have_builds = false
-		TileType.Field:
-			data.walk = true
-			data.walk_speed = 0.9
-			data.fertility = 0.5
-			data.swim = false
-			data.swim_speed = 0.0
-			data.can_have_builds = true
-		TileType.Smalforest:
-			data.walk = true
-			data.walk_speed = 0.8
-			data.fertility = 0.6
-			data.swim = false
-			data.swim_speed = 0.0
-			data.can_have_builds = true
-		TileType.Forest:
-			data.walk = true
-			data.walk_speed = 0.7
-			data.fertility = 0.7
-			data.swim = false
-			data.swim_speed = 0.0
-			data.can_have_builds = true
-		TileType.Bigforest:
-			data.walk = true
-			data.walk_speed = 0.6
-			data.fertility = 0.8
-			data.swim = false
-			data.swim_speed = 0.0
-			data.can_have_builds = true
-		TileType.Hills:
-			data.walk = true
-			data.walk_speed = 0.4
-			data.fertility = 0.4
-			data.swim = false
-			data.swim_speed = 0.0
-			data.can_have_builds = false
-		TileType.Mountain:
-			data.walk = true
-			data.walk_speed = 0.2
-			data.fertility = 0.0
-			data.swim = false
-			data.swim_speed = 0.0
-			data.can_have_builds = false
-		TileType.Snowmountain:
-			data.walk = false
-			data.walk_speed = 0.0
-			data.fertility = 0.0
-			data.swim = false
-			data.swim_speed = 0.0
-			data.can_have_builds = false
-	return data
 
 @onready var tilemap: TileMapLayer = $TileMapLayer
 @onready var camera: Camera2D = $Camera2D
@@ -138,42 +38,43 @@ func GenerateRegionMap():
 			var tile_pos = Vector2i(x, y)
 			var cell_type: int
 			
-			cell_type = TileType.Snowmountain
+			cell_type = TileDatabase.TileType.Snowmountain
 			var atlas_cords = Vector2i(0, 0)
 			
 			if noise_value > DeepwaterThreshold:
-				cell_type = TileType.Deepwater
+				cell_type = TileDatabase.TileType.Deepwater
 				atlas_cords = Vector2i(10, 0)
 			elif noise_value > WaterThreshold:
-				cell_type = TileType.Water
+				cell_type = TileDatabase.TileType.Water
 				atlas_cords = Vector2i(9, 0)
 			elif noise_value > SandwaterThreshold:
-				cell_type = TileType.Sandwater
+				cell_type = TileDatabase.TileType.Sandwater
 				atlas_cords = Vector2i(8, 0)
 			elif noise_value > BeachThreshold:
-				cell_type = TileType.Beach
+				cell_type = TileDatabase.TileType.Beach
 				atlas_cords = Vector2i(7, 0)
 			elif noise_value > FieldThreshold:
-				cell_type = TileType.Field
+				cell_type = TileDatabase.TileType.Field
 				atlas_cords = Vector2i(6, 0)
 			elif noise_value > SmalforestThreshold:
-				cell_type = TileType.Smalforest
+				cell_type = TileDatabase.TileType.Smalforest
 				atlas_cords = Vector2i(5, 0)
 			elif noise_value > ForestThreshold:
-				cell_type = TileType.Forest
+				cell_type = TileDatabase.TileType.Forest
 				atlas_cords = Vector2i(4, 0)
 			elif noise_value > BigforestThreshold:
-				cell_type = TileType.Bigforest
+				cell_type = TileDatabase.TileType.Bigforest
 				atlas_cords = Vector2i(3, 0)
 			elif noise_value > HillsThreshold:
-				cell_type = TileType.Hills
+				cell_type = TileDatabase.TileType.Hills
 				atlas_cords = Vector2i(2, 0)
 			elif noise_value > MountainThreshold:
-				cell_type = TileType.Mountain
+				cell_type = TileDatabase.TileType.Mountain
 				atlas_cords = Vector2i(1, 0)
 				
 			tilemap.set_cell(tile_pos, 0, atlas_cords)
-			tile_data[tile_pos] = GetTileType(cell_type)
+			var cell_data = TileDatabase.CreateCellData(cell_type)
+			tile_data[tile_pos] = cell_data
 	
 	camera.update_bounds(MapWidth, MapHeight, 16)
 
@@ -215,14 +116,15 @@ position: ({0}):
 	__________
 ==========
 "
-.format([atlas_coords, 'process', region_info.walk, region_info.walk_speed, region_info.swim, region_info.swim_speed, 
+.format([tile_pos, region_info.name, region_info.walk, region_info.walk_speed, region_info.swim, region_info.swim_speed, 
 region_info.fertility, region_info.can_have_builds]))
 
-func enable_region_info():
-	region_info_mode = true
-	Console.add_message("Режим отладки карты ВКЛЮЧЕН.")
+var region_info_mode = false
 
-func disable_region_info():
-	region_info_mode = false
-	Console.add_message("Режим отладки карты ВЫКЛЮЧЕН.")
+func region_info():
+	region_info_mode = not region_info_mode
+	if region_info_mode:
+		Console.add_message("Режим отладки карты ВКЛЮЧЕН.")
+	else:
+		Console.add_message("Режим отладки карты ВЫКЛЮЧЕН.")
 	

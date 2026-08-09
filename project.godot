@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Console="*uid://bqg3bnjb60pe1"
+TileDatabase="*uid://dybu8egrepuw5"
 
 [display]
 
