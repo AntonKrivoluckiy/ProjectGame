@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://c0sdag0k3c8m4"]
+
+[node name="Main" type="Node2D" unique_id=2089520786]
+
+[node name="MapGenerator" parent="." unique_id=1293938154]

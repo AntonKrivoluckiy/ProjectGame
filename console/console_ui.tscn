@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://6cc1kmt4dd0h"]
+
+[ext_resource type="Script" uid="uid://cbxypg8et3wxd" path="res://console/ConsoleUI.gd" id="1_a8mtr"]
+
+[node name="ConsoleUI" type="Panel" unique_id=1228928656]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a8mtr")
+
+[node name="HistoryLabel" type="RichTextLabel" parent="." unique_id=964595381]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CommandLine" type="LineEdit" parent="." unique_id=1495395650]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
