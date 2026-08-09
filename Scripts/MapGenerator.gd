@@ -1,8 +1,8 @@
 extends Node2D
 
-var MapWidth = 1024
-var MapHeight = 1024
-var NoiseScale = 0.005
+var MapWidth = 2000
+var MapHeight = 2000
+var NoiseScale = 0.004
 var TileSize = 16
 
 var DeepwaterThreshold = -0.2

@@ -59,17 +59,6 @@ func execute_command(command: String) -> void:
 				map_gen.enable_region_info()
 			else:
 				map_gen.disable_region_info()
-		"/free_cam":
-			free = not free
-			var cam_states = get_tree().root.find_child("Camera2D", true, false)
-			if free:
-				add_message("Свободная камера ВКЛЮЧЕНА")
-				cam_states.MaxZoom = 100.0
-				cam_states.MinZoom = -100.0
-			else:
-				cam_states.MaxZoom = 4.0
-				cam_states.MinZoom = 1.0
-				add_message("Свободная камера ВЫКЛЮЧЕНА")
 		_:
 			add_message("Неизвестная команда: " + cmd + ". Введите /help")
 

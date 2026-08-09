@@ -3,24 +3,26 @@
 [ext_resource type="Script" uid="uid://fcplbebt442h" path="res://Scripts/ExitScript.gd" id="1_elqb8"]
 [ext_resource type="PackedScene" uid="uid://csmotnf578exv" path="res://scenes/MapGenerator.tscn" id="2_0bbpv"]
 [ext_resource type="PackedScene" uid="uid://c8q0cdh8cw30m" path="res://console/ConsoleUI.tscn" id="2_rvslj"]
+[ext_resource type="Script" uid="uid://cjifufn7t3w4j" path="res://Scripts/СameraControl.gd" id="3_rarhs"]
 
 [node name="Main" type="Node2D" unique_id=2089520786]
 script = ExtResource("1_elqb8")
 
 [node name="MapGenerator" parent="." unique_id=1302092449 instance=ExtResource("2_0bbpv")]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=375413344]
+[node name="Camera2D" type="Camera2D" parent="MapGenerator" unique_id=375413344]
 position = Vector2(1000, 750)
+script = ExtResource("3_rarhs")
 
-[node name="ConsoleUI" parent="Camera2D" unique_id=295049646 instance=ExtResource("2_rvslj")]
+[node name="ConsoleUI" parent="MapGenerator/Camera2D" unique_id=295049646 instance=ExtResource("2_rvslj")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -512.0
-offset_top = -256.0
-offset_right = 512.0
-offset_bottom = 256.0
+offset_left = -750.0
+offset_top = -500.0
+offset_right = 750.0
+offset_bottom = 500.0
 grow_horizontal = 2
 grow_vertical = 2
