@@ -21,8 +21,8 @@ Console="*uid://bqg3bnjb60pe1"
 
 [display]
 
-window/size/viewport_width=2048
-window/size/viewport_height=1024
+window/size/viewport_width=2000
+window/size/viewport_height=1500
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
