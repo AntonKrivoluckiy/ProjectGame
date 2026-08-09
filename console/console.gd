@@ -1,4 +1,3 @@
-# console.gd - Autoload синглтон
 extends Node
 
 # Ссылка на визуальную панель консоли (будет установлена после загрузки сцены)
@@ -8,7 +7,7 @@ var console_ui: Panel = null
 var is_ready := false
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Open|Close Console"):
+	if event.is_action_pressed("Console"):
 		toggle()
 		get_viewport().set_input_as_handled()
 

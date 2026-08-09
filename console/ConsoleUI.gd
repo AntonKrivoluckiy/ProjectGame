@@ -1,4 +1,3 @@
-# console_ui.gd
 extends Panel
 
 @onready var history_label: RichTextLabel = $HistoryLabel
