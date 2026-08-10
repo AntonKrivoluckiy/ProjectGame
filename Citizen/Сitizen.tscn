@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dj88xsyba1wwn"]
+
+[ext_resource type="Texture2D" uid="uid://c04hasn1c3uwh" path="res://Textures/BaseCitizen.png" id="1_hiq1w"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_usgnq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hiq1w")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eg8xt"]
+radius = 3.0
+height = 22.0
+
+[node name="Citizen" type="Area2D" unique_id=434354141]
+
+[node name="CitizenTexture" type="AnimatedSprite2D" parent="." unique_id=1707059672]
+scale = Vector2(0.31132075, 0.3219178)
+sprite_frames = SubResource("SpriteFrames_usgnq")
+frame_progress = 0.43142346
+
+[node name="CitizenHitbox" type="CollisionShape2D" parent="." unique_id=225410258]
+shape = SubResource("CapsuleShape2D_eg8xt")
