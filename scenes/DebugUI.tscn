@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://ckvn18umuyeuo"]
+
+[node name="DebugUI" type="Panel" unique_id=912732025]
+offset_right = 300.0
+offset_bottom = 92.0
+
+[node name="FPSLabel" type="Label" parent="." unique_id=920619332]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 46.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "FPS:"
+
+[node name="MemLabel" type="Label" parent="." unique_id=2022673096]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -46.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Mem: "
