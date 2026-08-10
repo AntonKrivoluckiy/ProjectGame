@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://biw2784kb0bds"]
-
-[ext_resource type="Script" uid="uid://fcplbebt442h" path="res://Scripts/ExitScript.gd" id="1_hskor"]
-[ext_resource type="PackedScene" uid="uid://biw2784kb0bds" path="res://scenes/regions_map_generator.tscn" id="2_5gnss"]
-
-[node name="Main" type="Node2D" unique_id=2089520786]
-script = ExtResource("1_hskor")
-
-[node name="MapGenerator" parent="." unique_id=1293938154 instance=ExtResource("2_5gnss")]

@@ -1,5 +1,27 @@
 [gd_scene format=3 uid="uid://c0sdag0k3c8m4"]
 
-[node name="Main" type="Node2D" unique_id=2089520786]
+[ext_resource type="Script" uid="uid://fcplbebt442h" path="res://Scripts/ExitScript.gd" id="1_elqb8"]
+[ext_resource type="PackedScene" uid="uid://csmotnf578exv" path="res://scenes/MapGenerator.tscn" id="2_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://d23dxtcw7u3qb" path="res://console/ConsoleUI.tscn" id="2_rvslj"]
+[ext_resource type="Script" uid="uid://cjifufn7t3w4j" path="res://Scripts/СameraControl.gd" id="3_rarhs"]
+[ext_resource type="Script" uid="uid://u156pbsmvcki" path="res://Scripts/DebugUI.gd" id="5_c01mt"]
+[ext_resource type="PackedScene" uid="uid://ckvn18umuyeuo" path="res://scenes/DebugUI.tscn" id="6_nxtc6"]
 
-[node name="MapGenerator" parent="." unique_id=1293938154]
+[node name="Main" type="Node2D" unique_id=2089520786]
+script = ExtResource("1_elqb8")
+
+[node name="MapGenerator" parent="." unique_id=1302092449 instance=ExtResource("2_0bbpv")]
+
+[node name="Camera2D" type="Camera2D" parent="MapGenerator" unique_id=375413344]
+position = Vector2(1000, 750)
+script = ExtResource("3_rarhs")
+
+[node name="ConsoleLayer" type="CanvasLayer" parent="MapGenerator" unique_id=385962538]
+
+[node name="ConsoleUI" parent="MapGenerator/ConsoleLayer" unique_id=295049646 instance=ExtResource("2_rvslj")]
+visible = false
+
+[node name="DebugLayer" type="CanvasLayer" parent="MapGenerator" unique_id=22996591]
+script = ExtResource("5_c01mt")
+
+[node name="DebugUI" parent="MapGenerator/DebugLayer" unique_id=912732025 instance=ExtResource("6_nxtc6")]

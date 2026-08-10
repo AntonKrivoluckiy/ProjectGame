@@ -1,4 +1,3 @@
-# console_ui.gd
 extends Panel
 
 @onready var history_label: RichTextLabel = $HistoryLabel
@@ -31,8 +30,7 @@ func execute_command(command: String) -> void:
 	
 	var cmd = parts[0].to_lower()
 	
-	var free = false
-	var region_info = false
+	var region_info_mode = false
 	match cmd:
 		"/hello":
 			if parts.size() > 1 and parts[1] == "game":
@@ -54,23 +52,9 @@ func execute_command(command: String) -> void:
 			visible = false
 			command_line.release_focus()
 		"/region_info":
-			region_info = not region_info
+			region_info_mode = not region_info_mode
 			var map_gen = get_tree().root.find_child("MapGenerator", true, false)
-			if region_info:
-				map_gen.enable_region_info()
-			else:
-				map_gen.disable_region_info()
-		"/free_cam":
-			free = not free
-			var cam_states = get_tree().root.find_child("Camera2D", true, false)
-			if free:
-				add_message("Свободная камера ВКЛЮЧЕНА")
-				cam_states.MaxZoom = 100.0
-				cam_states.MinZoom = -100.0
-			else:
-				cam_states.MaxZoom = 4.0
-				cam_states.MinZoom = 1.0
-				add_message("Свободная камера ВЫКЛЮЧЕНА")
+			map_gen.region_info()
 		_:
 			add_message("Неизвестная команда: " + cmd + ". Введите /help")
 

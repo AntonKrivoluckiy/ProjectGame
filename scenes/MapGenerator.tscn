@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://csmotnf578exv"]
+
+[ext_resource type="Script" uid="uid://buys2yjqglxn6" path="res://Scripts/MapGenerator.gd" id="1_1goki"]
+[ext_resource type="Texture2D" uid="uid://do312x82h7j3j" path="res://Textures/GameMapTerrain.png" id="2_bhm3l"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3wd64"]
+texture = ExtResource("2_bhm3l")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_mieyu"]
+sources/0 = SubResource("TileSetAtlasSource_3wd64")
+
+[node name="MapGenerator" type="Node2D" unique_id=1302092449]
+script = ExtResource("1_1goki")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=740731671]
+tile_set = SubResource("TileSet_mieyu")
