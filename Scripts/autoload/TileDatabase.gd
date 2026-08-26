@@ -153,3 +153,13 @@ func CreateCellData(type_id: int) -> CellData:
 func GetProp(type_id: int, prop_name: String):
 	var props = PropType.get(type_id, {})
 	return props.get(prop_name, null)
+
+func CameraPosition() -> Vector2i:
+	var camera = get_viewport().get_camera_2d()
+	var vieport_size = get_viewport().get_visible_rect().size
+	var cenre_screen = vieport_size / 2.0
+	
+	var world_pos = camera.get_screen_center_position()
+	
+	var tile_pos = Vector2i(floor(world_pos.x / 16), floor(world_pos.y / 16))
+	return tile_pos

@@ -34,7 +34,6 @@ func _find_console_ui() -> void:
 			console_ui = found
 			is_ready = true
 			console_ui.visible = false
-			print("Console: найден ConsoleUI в текущей сцене")
 	else:
 		# Если не нашли, но старый объект ещё жив — возможно, он всё ещё в другой сцене
 		if console_ui and is_instance_valid(console_ui):

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dj88xsyba1wwn"]
+
+[ext_resource type="Script" uid="uid://b000k0smjf62m" path="res://Citizens/CitizenVisual.gd" id="1_5lvt4"]
+[ext_resource type="Texture2D" uid="uid://c04hasn1c3uwh" path="res://Textures/BaseCitizen.png" id="2_vkf5g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_usgnq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vkf5g")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Citizen" type="Node2D" unique_id=1119357178]
+script = ExtResource("1_5lvt4")
+
+[node name="CitizenTexture" type="AnimatedSprite2D" parent="." unique_id=1670516855]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_usgnq")
