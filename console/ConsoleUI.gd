@@ -64,7 +64,7 @@ func execute_command(command: String) -> void:
 					citizen_name["name"],
 					cam_pos
 				)
-				print(PopManager.Citizens)
+				add_message("Citizen " + citizen_name["name"] + "spawn on (" + str(cam_pos) + ")")
 			else:
 				add_message("Try Usage: /spawn citizen")
 		"/kill":
@@ -73,9 +73,9 @@ func execute_command(command: String) -> void:
 					var count_of_deleted: int = int(parts[2])
 					
 					var all_ids = PopManager.Citizens.keys()
-					var actualy_kills = min(count_of_deleted, all_ids.size())
+					var kills_id = min(count_of_deleted, all_ids.size())
 					
-					for id in range(actualy_kills):
+					for id in range(kills_id):
 						PopManager.Citizens[id].is_alive = false
 					
 					PopManager.RemoveCitizen()

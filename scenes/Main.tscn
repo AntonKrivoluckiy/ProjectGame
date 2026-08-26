@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cjifufn7t3w4j" path="res://Scripts/СameraControl.gd" id="2_vcsgt"]
 [ext_resource type="PackedScene" uid="uid://ckvn18umuyeuo" path="res://scenes/DebugUI.tscn" id="3_vcsgt"]
 [ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="4_c01mt"]
-[ext_resource type="PackedScene" uid="uid://dj88xsyba1wwn" path="res://Citizens/Сitizen.tscn" id="4_rarhs"]
+[ext_resource type="Script" uid="uid://ccla3lnviq77g" path="res://Citizens/CitizenRender.gd" id="7_nxtc6"]
 
 [node name="Main" type="Node2D" unique_id=8242718]
 script = ExtResource("1_nxtc6")
@@ -28,4 +28,5 @@ script = ExtResource("4_c01mt")
 
 [node name="DebugUI" parent="MapGenerator/Console" unique_id=912732025 instance=ExtResource("3_vcsgt")]
 
-[node name="Citizen" parent="." unique_id=1119357178 instance=ExtResource("4_rarhs")]
+[node name="Citizens" type="Node2D" parent="." unique_id=803649408]
+script = ExtResource("7_nxtc6")
