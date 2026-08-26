@@ -24,6 +24,8 @@ func _on_command_submitted(command: String) -> void:
 	command_line.grab_focus()
 
 func execute_command(command: String) -> void:
+	var cam_pos = TileDatabase.CameraPosition()
+	
 	var parts = command.split(" ", false)
 	if parts.is_empty():
 		return
@@ -55,8 +57,32 @@ func execute_command(command: String) -> void:
 			region_info_mode = not region_info_mode
 			var map_gen = get_tree().root.find_child("MapGenerator", true, false)
 			map_gen.region_info()
+		"/spawn":
+			if parts.size() > 1 and parts[1] == "citizen":
+				var citizen_name = PopManager.GenerateRandomName()
+				PopManager.CreateSitizen(
+					citizen_name["name"],
+					cam_pos
+				)
+				print(PopManager.Citizens)
+			else:
+				add_message("Try Usage: /spawn citizen")
+		"/kill":
+			if parts.size() > 1 and parts[1] == "citizen":
+				if parts[2]:
+					var count_of_deleted: int = int(parts[2])
+					
+					var all_ids = PopManager.Citizens.keys()
+					var actualy_kills = min(count_of_deleted, all_ids.size())
+					
+					for id in range(actualy_kills):
+						PopManager.Citizens[id].is_alive = false
+					
+					PopManager.RemoveCitizen()
+			else:
+				add_message("Try Ussage: /kill citizen (num)")
 		_:
-			add_message("Неизвестная команда: " + cmd + ". Введите /help")
+			add_message("Unknown kommand: " + cmd + ". Ussage /help")
 
 func add_message(text: String) -> void:
 	history_label.append_text(text + "\n")

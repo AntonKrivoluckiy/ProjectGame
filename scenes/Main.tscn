@@ -1,27 +1,31 @@
 [gd_scene format=3 uid="uid://c0sdag0k3c8m4"]
 
-[ext_resource type="Script" uid="uid://fcplbebt442h" path="res://Scripts/ExitScript.gd" id="1_elqb8"]
-[ext_resource type="PackedScene" uid="uid://csmotnf578exv" path="res://scenes/MapGenerator.tscn" id="2_0bbpv"]
-[ext_resource type="PackedScene" uid="uid://d23dxtcw7u3qb" path="res://console/ConsoleUI.tscn" id="2_rvslj"]
-[ext_resource type="Script" uid="uid://cjifufn7t3w4j" path="res://Scripts/СameraControl.gd" id="3_rarhs"]
-[ext_resource type="Script" uid="uid://u156pbsmvcki" path="res://Scripts/DebugUI.gd" id="5_c01mt"]
-[ext_resource type="PackedScene" uid="uid://ckvn18umuyeuo" path="res://scenes/DebugUI.tscn" id="6_nxtc6"]
+[ext_resource type="PackedScene" uid="uid://csmotnf578exv" path="res://scenes/MapGenerator.tscn" id="1_0bbpv"]
+[ext_resource type="Script" uid="uid://fcplbebt442h" path="res://Scripts/ExitScript.gd" id="1_nxtc6"]
+[ext_resource type="PackedScene" uid="uid://d23dxtcw7u3qb" path="res://console/ConsoleUI.tscn" id="2_rarhs"]
+[ext_resource type="Script" uid="uid://cjifufn7t3w4j" path="res://Scripts/СameraControl.gd" id="2_vcsgt"]
+[ext_resource type="PackedScene" uid="uid://ckvn18umuyeuo" path="res://scenes/DebugUI.tscn" id="3_vcsgt"]
+[ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="4_c01mt"]
+[ext_resource type="PackedScene" uid="uid://dj88xsyba1wwn" path="res://Citizens/Сitizen.tscn" id="4_rarhs"]
 
-[node name="Main" type="Node2D" unique_id=2089520786]
-script = ExtResource("1_elqb8")
+[node name="Main" type="Node2D" unique_id=8242718]
+script = ExtResource("1_nxtc6")
 
-[node name="MapGenerator" parent="." unique_id=1302092449 instance=ExtResource("2_0bbpv")]
+[node name="MapGenerator" parent="." unique_id=1302092449 instance=ExtResource("1_0bbpv")]
 
-[node name="Camera2D" type="Camera2D" parent="MapGenerator" unique_id=375413344]
-position = Vector2(1000, 750)
-script = ExtResource("3_rarhs")
+[node name="Camera2D" type="Camera2D" parent="MapGenerator" unique_id=1469881350]
+position = Vector2(1000, 746)
+script = ExtResource("2_vcsgt")
 
-[node name="ConsoleLayer" type="CanvasLayer" parent="MapGenerator" unique_id=385962538]
+[node name="Debug" type="CanvasLayer" parent="MapGenerator" unique_id=1977292062]
 
-[node name="ConsoleUI" parent="MapGenerator/ConsoleLayer" unique_id=295049646 instance=ExtResource("2_rvslj")]
-visible = false
+[node name="ConsoleUI" parent="MapGenerator/Debug" unique_id=1239430367 instance=ExtResource("2_rarhs")]
+offset_top = 0.0
+offset_bottom = -10.0
 
-[node name="DebugLayer" type="CanvasLayer" parent="MapGenerator" unique_id=22996591]
-script = ExtResource("5_c01mt")
+[node name="Console" type="CanvasLayer" parent="MapGenerator" unique_id=1457225706]
+script = ExtResource("4_c01mt")
 
-[node name="DebugUI" parent="MapGenerator/DebugLayer" unique_id=912732025 instance=ExtResource("6_nxtc6")]
+[node name="DebugUI" parent="MapGenerator/Console" unique_id=912732025 instance=ExtResource("3_vcsgt")]
+
+[node name="Citizen" parent="." unique_id=1119357178 instance=ExtResource("4_rarhs")]
