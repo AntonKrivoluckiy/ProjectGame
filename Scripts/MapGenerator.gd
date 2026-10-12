@@ -81,6 +81,9 @@ func GenerateRegionMap():
 func _ready() -> void:
 	GenerateRegionMap()
 
+var region_info_mode = false
+var citizen_info_mode = false
+
 func _input(event: InputEvent):
 	# Получаем позицию мыши в мировых координатах
 	var mouse_pos = get_global_mouse_position()
@@ -97,6 +100,7 @@ func _input(event: InputEvent):
 		if console and not console.visible:
 			return
 		
+		#Region info
 		if region_info_mode:
 			# Проверяем, что координаты в пределах карты
 			if tile_pos.x >= 0 and tile_pos.x < MapHeight and tile_pos.y >= 0 and tile_pos.y < MapWidth:
@@ -104,27 +108,33 @@ func _input(event: InputEvent):
 				
 				Console.add_message(
 "
-position: ({0}):
+==========REGION INFO==========
+Position: {0}:
 	__________
-	biom type: {1}
-		walk: {2}
-		walk speed: {3}
-		swim: {4}
-		swim speed: {5}
-		fertility: {6}
-		can have builds: {7}
+	Biom type: {1}
+		Can walk: {2}
+		- Walk speed: {3}
+		Can swim: {4}
+		- Swim speed: {5}
+		Fertility: {6}
+		Can have builds: {7}
 	__________
-==========
-"
+==========REGION INFO=========="
 .format([tile_pos, region_info.name, region_info.walk, region_info.walk_speed, region_info.swim, region_info.swim_speed, 
 region_info.fertility, region_info.can_have_builds]))
-
-var region_info_mode = false
-
-func region_info():
-	region_info_mode = not region_info_mode
-	if region_info_mode:
-		Console.add_message("Режим отладки карты ВКЛЮЧЕН.")
-	else:
-		Console.add_message("Режим отладки карты ВЫКЛЮЧЕН.")
-	
+		
+		#Citizen info
+		if citizen_info_mode:
+			var citizen = PopManager.find_citizen_at_tile(tile_pos)
+			if citizen:
+				Console.add_message(
+"
+==========CITIZEN INFO==========
+Citizen id {0}:
+Citizen Gender: {1}
+	Citizen Name: {2}
+Position: {3}
+Health: {4}
+Hunger: {5}
+==========CITIZEN INFO=========="
+.format([citizen.id, citizen.gender, citizen.name, citizen.position, citizen.health, citizen.hunger]))

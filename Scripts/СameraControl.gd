@@ -3,7 +3,7 @@ extends Camera2D
 var ZoomTarget: Vector2
 var ZoomSpeed: float = 10
 
-var MaxZoom = 2.0
+var MaxZoom = 5.0
 var MinZoom = 0.5
 
 var MapLeft = 0

@@ -37,4 +37,4 @@ offset_top = -46.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
-text = "Pos:"
+text = " Cam Pos:"

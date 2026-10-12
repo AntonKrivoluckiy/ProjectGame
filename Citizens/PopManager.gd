@@ -8,10 +8,11 @@ signal citizen_born(citizen_id: int)
 signal citizen_diet(citizen_id: int)
 signal population_changed(new_count: int)
 
-func CreateSitizen(cit_name: String, cit_position: Vector2i) -> int:
+func CreateSitizen(cit_name: String, cit_gender: String, cit_position: Vector2i) -> int:
 	var Citizen = CitizenData.new()
 	
 	Citizen.id = next_id
+	Citizen.gender = cit_gender
 	Citizen.name = cit_name
 	Citizen.position = cit_position
 	
@@ -39,12 +40,14 @@ func GenerateRandomName(gender: int = -1) -> Dictionary:
 	if gender == -1:
 		gender = randi() % 2
 	
+	var name: String
 	if gender == 1:
-		var name = male_names[randi() % male_names.size()]
+		name = male_names[randi() % male_names.size()]
 	else:
-		var name = female_name[randi() % female_name.size()]
+		name = female_name[randi() % female_name.size()]
 	
-	return {"name": name}
+	print(name)
+	return {"name": name, "gender": gender}
 
 func RemoveCitizen():
 	var to_remove: Array[int] = []
@@ -62,5 +65,16 @@ func KillCitizens(id: int):
 		citizen_diet.emit(id)
 		population_changed.emit(Citizens.size())
 
+func MarcCitizenDead(id: int):
+	if Citizens.has(id):
+		Citizens[id].is_alive = false
+		RemoveCitizen()
+
 func GetCitizen(id: int) -> CitizenData:
 	return Citizens.get(id, null)
+
+func find_citizen_at_tile(tile_pos: Vector2i) -> CitizenData:
+	for citizen in Citizens.values():
+		if citizen.is_alive and citizen.position == tile_pos:
+			return citizen
+	return null

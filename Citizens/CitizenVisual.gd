@@ -1,5 +1,5 @@
 class_name CitizenVisible
-extends Node2D
+extends Area2D
 
 var citizen_id: int = -1
 

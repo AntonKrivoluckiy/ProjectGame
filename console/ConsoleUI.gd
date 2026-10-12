@@ -32,55 +32,96 @@ func execute_command(command: String) -> void:
 	
 	var cmd = parts[0].to_lower()
 	
-	var region_info_mode = false
+	var map_gen = get_tree().root.find_child("MapGenerator", true, false)
+	
 	match cmd:
-		"/hello":
-			if parts.size() > 1 and parts[1] == "game":
-				add_message("Hello game!")
-			else:
-				add_message("Usage: /hello game")
+		#HELP
 		"/help":
 			add_message(
-				"Доступные команды:
-		/hello game
-		/clear
-		/close
-		/region_info
-		/free_cam"
+"List of commands:
+- console - Work with console
+	/hello game - hello gamer!
+	/clear - Clear console
+	/close - Close console
+- region - Region DEBUG
+	/region_info - Displaying information about the region
+- spawn - Spawn entity 
+	/spawn citizen - Spawn a citizen
+- kill - Kill entity
+	/kill citizens <num> - Kill <num> of citizens
+- entity info - Entity DEBUG
+	/citizen_info - Displaying information abouut the citizen"
 		)
+		
+		#CONSOLE
+		"/hello":
+			if parts.size() > 1 and parts[1] == "game":
+				add_message("Hello gamer!")
+			else:
+				add_message("Usage: /hello game")
 		"/clear":
 			history_label.clear()
 		"/close":
 			visible = false
 			command_line.release_focus()
+		
+		# REGION
 		"/region_info":
-			region_info_mode = not region_info_mode
-			var map_gen = get_tree().root.find_child("MapGenerator", true, false)
-			map_gen.region_info()
+			map_gen.region_info_mode = not map_gen.region_info_mode
+			map_gen.citizen_info_mode = false
+			if map_gen.region_info_mode:
+				add_message("Region info mode ON. Klick a tile to get info")
+			else:
+				add_message("Region info mode OFF")
+		
+		# SPAWN
 		"/spawn":
 			if parts.size() > 1 and parts[1] == "citizen":
+				var cit_pos = Vector2i(cam_pos.x + randi() % 4, cam_pos.y + randi() % 4)
 				var citizen_name = PopManager.GenerateRandomName()
+				var gender: String
+				if citizen_name["gender"] == 1:
+					gender = "Male"
+				else:
+					gender = "Female"
 				PopManager.CreateSitizen(
 					citizen_name["name"],
-					cam_pos
+					gender,
+					cit_pos
 				)
-				add_message("Citizen " + citizen_name["name"] + "spawn on (" + str(cam_pos) + ")")
+				add_message("Citizen spawn on " + str(cit_pos))
 			else:
 				add_message("Try Usage: /spawn citizen")
+				
+		# KILL
 		"/kill":
-			if parts.size() > 1 and parts[1] == "citizen":
-				if parts[2]:
-					var count_of_deleted: int = int(parts[2])
+			if parts.size() > 1 and parts[1] == "citizens":
+				if parts.size() > 2 and parts[2].is_valid_int():
+					var count_to_kill = int(parts[2])
 					
-					var all_ids = PopManager.Citizens.keys()
-					var kills_id = min(count_of_deleted, all_ids.size())
+					var alive_ids: Array[int] = []
+					for id in PopManager.Citizens:
+						if PopManager.Citizens[id].is_alive:
+							alive_ids.append(id)
+							
+					var actualy_kill = min(count_to_kill, alive_ids.size())
 					
-					for id in range(kills_id):
-						PopManager.Citizens[id].is_alive = false
+					for i in range(actualy_kill):
+						PopManager.MarcCitizenDead(alive_ids[i])
 					
-					PopManager.RemoveCitizen()
+					add_message(str(actualy_kill) + " citizens was killed")
 			else:
-				add_message("Try Ussage: /kill citizen (num)")
+				add_message("Try Ussage: /kill citizens <num>")
+				
+		# ENTITY INFO
+		"/citizen_info":
+			map_gen.citizen_info_mode = not map_gen.citizen_info_mode
+			map_gen.region_info_mode = false
+			if map_gen.citizen_info_mode:
+				add_message("Citizen info on. Klick a citizen to get info")
+			else:
+				add_message("Citizen info mode off")
+		
 		_:
 			add_message("Unknown kommand: " + cmd + ". Ussage /help")
 
