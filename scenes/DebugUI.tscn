@@ -3,7 +3,7 @@
 [node name="DebugUI" type="Panel" unique_id=912732025]
 offset_left = 1700.0
 offset_right = 2000.0
-offset_bottom = 138.0
+offset_bottom = 150.0
 
 [node name="FPSLabel" type="Label" parent="." unique_id=920619332]
 layout_mode = 1
@@ -37,4 +37,4 @@ offset_top = -46.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
-text = " Cam Pos:"
+text = "Cam Pos:"

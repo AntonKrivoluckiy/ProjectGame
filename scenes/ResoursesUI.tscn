@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://7v3xyy3cfymx"]
+
+[node name="ResoursesUI" type="Panel" unique_id=1356875824]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 1700.0
+offset_top = 150.0
+offset_right = 2000.0
+offset_bottom = 1000.0
+
+[node name="TextUI" type="Label" parent="." unique_id=1025893714]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -139.65001
+offset_right = 139.65001
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "        Resourses"
+
+[node name="FoodUI" type="Label" parent="." unique_id=2079455411]
+layout_mode = 0
+anchor_top = 0.052941177
+anchor_right = 1.0
+anchor_bottom = 0.11176471
+theme_override_font_sizes/font_size = 32
+text = "Food: "
+metadata/_edit_use_anchors_ = true

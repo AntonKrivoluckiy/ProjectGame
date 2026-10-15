@@ -105,7 +105,7 @@ func PropInit():
 		"have_builds": false 
 	})
 	RegType(TileType.Hills, {
-		"name": "Hillsr",
+		"name": "Hills",
 		"walk": true,
 		"walk_speed": 0.4,
 		"swim": false,
