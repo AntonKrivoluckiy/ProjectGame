@@ -76,6 +76,7 @@ func GenerateRegionMap():
 			var cell_data = TileDatabase.CreateCellData(cell_type)
 			tile_data[tile_pos] = cell_data
 	
+	TileDatabase.SetMapData(tile_data, MapWidth, MapHeight)
 	camera.update_bounds(MapWidth, MapHeight, 16)
 
 func _ready() -> void:

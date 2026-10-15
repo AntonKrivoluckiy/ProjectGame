@@ -16,10 +16,7 @@ func UpdateDisplay():
 		return
 		
 	var tile_size = 16
-	position = Vector2(
-		data.position.x * tile_size + tile_size / 2.0,
-		data.position.y * tile_size + tile_size / 2.0
-	)
+	position = data.world_position
 
 func _process(delta: float) -> void:
 	if citizen_id != -1:

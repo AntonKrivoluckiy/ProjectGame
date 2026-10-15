@@ -1,5 +1,6 @@
 extends Node2D
 
+# Tile Database
 enum TileType{
 	Deepwater,
 	Water,
@@ -133,7 +134,7 @@ func PropInit():
 		"can_have_builds": false,
 		"have_builds": false 
 	})
-	
+
 func CreateCellData(type_id: int) -> CellData:
 	var props = PropType.get(type_id, {})
 	var data = CellData.new()
@@ -163,3 +164,26 @@ func CameraPosition() -> Vector2i:
 	
 	var tile_pos = Vector2i(floor(world_pos.x / 16), floor(world_pos.y / 16))
 	return tile_pos
+
+#Simple Wander
+var map_data: Dictionary = {}
+var map_width: int = 0
+var map_height: int = 0
+
+func SetMapData(data: Dictionary, width: int, height: int) -> void:
+	map_data = data
+	map_width = width
+	map_height = height
+
+func GetCell(pos: Vector2i) -> CellData:
+	return map_data.get(pos, null)
+
+func IsWalkable(pos: Vector2i) -> bool:
+	var cell = GetCell(pos)
+	return cell != null and cell.walk
+
+func GetWalkSpeed(pos: Vector2i) -> float:
+	var cell = GetCell(pos)
+	if cell == null:
+		return 0.0
+	return cell.swim_speed
