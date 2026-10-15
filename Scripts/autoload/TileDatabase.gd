@@ -186,4 +186,4 @@ func GetWalkSpeed(pos: Vector2i) -> float:
 	var cell = GetCell(pos)
 	if cell == null:
 		return 0.0
-	return cell.swim_speed
+	return cell.walk_speed

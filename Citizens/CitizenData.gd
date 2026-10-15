@@ -10,7 +10,7 @@ var hunger: float = 1.0
 
 var position: Vector2i = Vector2i.ZERO
 var world_position: Vector2 = Vector2.ZERO
-var base_speed: float = 1000.0 #tiles per second
+var base_speed: float = 4.0 #tiles per second
 var in_build_id: int = -1 # -1 - outdor
 
 var wander_timer: float = 0.0
