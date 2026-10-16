@@ -5,8 +5,9 @@ var id: int = 0
 var name: String = ""
 var gender: int = -1 # 1 - male; 0 - female 
 
-var health: float = 1.0
-var hunger: float = 1.0
+var health: int = 100
+var hunger_timer: float = 1.0
+var hunger: int = 100
 
 var position: Vector2i = Vector2i.ZERO
 var world_position: Vector2 = Vector2.ZERO

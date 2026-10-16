@@ -50,7 +50,11 @@ func execute_command(command: String) -> void:
 - kill - Kill entity
 	/kill citizens <num> - Kill <num> of citizens
 - entity info - Entity DEBUG
-	/citizen_info - Displaying information abouut the citizen"
+	/citizen_info - Displaying information abouut the citizen
+- add - add resources
+	/add food <num> - Add <num> of food>
+- del - delete resources
+	/ del food <num> - Delete <num> of food"
 		)
 		
 		#CONSOLE
@@ -121,6 +125,31 @@ func execute_command(command: String) -> void:
 				add_message("Citizen info on. Klick a citizen to get info")
 			else:
 				add_message("Citizen info mode off")
+		
+		# ADD RESOURCES
+		"/add":
+			if parts.size() > 1:
+				if parts[1] == "food" and parts[2].is_valid_int():
+					var add_food = int (parts[2])
+					ResourcesManager.food += add_food
+					add_message("Added " + str(add_food) + " food")
+				else:
+					add_message("Try Ussage: /add food <num>")
+		
+		# DEL RESOURCES
+		"/del":
+			if parts.size() > 1:
+				if parts[1] == "food" and parts[2].is_valid_int():
+					var del_food = int(parts[2])
+					if del_food == -1:
+						ResourcesManager.food = 0
+						add_message("Deleted all food")
+					else:
+						ResourcesManager.food = min(0, ResourcesManager.food - del_food)
+						add_message("Deleted " + str(del_food) + " food")
+				else:
+					add_message("Try Ussage: /del food <num>")
+		
 		
 		_:
 			add_message("Unknown kommand: " + cmd + ". Ussage /help")

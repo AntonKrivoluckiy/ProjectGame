@@ -10,6 +10,7 @@ signal population_changed(new_count: int)
 
 func _process(delta: float) -> void:
 	UpdateAllCitizens(delta)
+	RemoveCitizen()
 
 func CreateSitizen(cit_name: String, cit_gender: String, cit_position: Vector2i) -> int:
 	var Citizen = CitizenData.new()
@@ -84,15 +85,23 @@ func UpdateAllCitizens(delta_time: float):
 						Citizen.path.clear()
 						Citizen.path_index = 0
 						Citizen.wander_timer = 5.0
+		
+		# hunger
+		Citizen.hunger_timer -= delta_time
+		if Citizen.hunger_timer <= 0:
+			Citizen.hunger = max(0, Citizen.hunger - 1)
+			Citizen.hunger_timer = 1.0
+		
+		if Citizen.hunger < 30 and ResourcesManager.food >= 1:
+			ResourcesManager.food -= 1
+			Citizen.hunger += 70
+			Citizen.hunger_timer = 10.0
 			
-			
+		if Citizen.hunger <= 0 and ResourcesManager.food == 0:
+			Citizen.health = max(0.0, Citizen.health - 1)
 		
-		#Citizen.hunger = max(0.0, Citizen.hunger - 0.1)
-		
-		#if Citizen.hunger <= 0.0:
-			#Citizen.health = max(0.0, Citizens.health - 0.1)
-		
-		if Citizen.health <= 0.0:
+		# death
+		if Citizen.health <= 0:
 			Citizen.is_alive = false
 
 var male_names: Array[String] = ["Tom", "Petr", "Ivan"]
@@ -102,14 +111,16 @@ func GenerateRandomName(gender: int = -1) -> Dictionary:
 	if gender == -1:
 		gender = randi() % 2
 	
+	var s_gender: String
 	var name: String
 	if gender == 1:
 		name = male_names[randi() % male_names.size()]
+		s_gender = "Male"
 	else:
 		name = female_name[randi() % female_name.size()]
+		s_gender = "Female"
 	
-	print(name)
-	return {"name": name, "gender": gender}
+	return {"name": name, "gender": s_gender}
 
 func RemoveCitizen():
 	var to_remove: Array[int] = []

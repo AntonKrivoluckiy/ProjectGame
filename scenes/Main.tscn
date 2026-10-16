@@ -6,8 +6,9 @@
 [ext_resource type="Script" uid="uid://cjifufn7t3w4j" path="res://Scripts/СameraControl.gd" id="2_vcsgt"]
 [ext_resource type="PackedScene" uid="uid://ckvn18umuyeuo" path="res://scenes/DebugUI.tscn" id="3_vcsgt"]
 [ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="4_c01mt"]
-[ext_resource type="PackedScene" uid="uid://7v3xyy3cfymx" path="res://scenes/ResoursesUI.tscn" id="5_jlsqs"]
+[ext_resource type="PackedScene" uid="uid://7v3xyy3cfymx" path="res://scenes/ResourcesUI.tscn" id="5_jlsqs"]
 [ext_resource type="Script" uid="uid://ccla3lnviq77g" path="res://Citizens/CitizenRender.gd" id="7_nxtc6"]
+[ext_resource type="Script" uid="uid://dod3ixpt623a1" path="res://Scripts/Resources.gd" id="7_q8u5g"]
 
 [node name="Main" type="Node2D" unique_id=8242718]
 script = ExtResource("1_nxtc6")
@@ -18,19 +19,20 @@ script = ExtResource("1_nxtc6")
 position = Vector2(1000, 746)
 script = ExtResource("2_vcsgt")
 
-[node name="Debug" type="CanvasLayer" parent="MapGenerator" unique_id=1977292062]
+[node name="Console" type="CanvasLayer" parent="MapGenerator" unique_id=1977292062]
 
-[node name="ConsoleUI" parent="MapGenerator/Debug" unique_id=1239430367 instance=ExtResource("2_rarhs")]
+[node name="ConsoleUI" parent="MapGenerator/Console" unique_id=1239430367 instance=ExtResource("2_rarhs")]
 offset_bottom = -10.0
 
-[node name="Console" type="CanvasLayer" parent="MapGenerator" unique_id=1457225706]
+[node name="Debug" type="CanvasLayer" parent="MapGenerator" unique_id=1457225706]
 script = ExtResource("4_c01mt")
 
-[node name="DebugUI" parent="MapGenerator/Console" unique_id=912732025 instance=ExtResource("3_vcsgt")]
+[node name="DebugUI" parent="MapGenerator/Debug" unique_id=912732025 instance=ExtResource("3_vcsgt")]
 
-[node name="Resourses" type="CanvasLayer" parent="MapGenerator" unique_id=2099133590]
+[node name="Resources" type="CanvasLayer" parent="MapGenerator" unique_id=2099133590]
+script = ExtResource("7_q8u5g")
 
-[node name="ResoursesUI" parent="MapGenerator/Resourses" unique_id=1356875824 instance=ExtResource("5_jlsqs")]
+[node name="ResourcesUI" parent="MapGenerator/Resources" unique_id=1356875824 instance=ExtResource("5_jlsqs")]
 
 [node name="Citizens" type="Node2D" parent="." unique_id=803649408]
 script = ExtResource("7_nxtc6")
