@@ -33,6 +33,17 @@ script = ExtResource("4_c01mt")
 script = ExtResource("7_q8u5g")
 
 [node name="ResourcesUI" parent="MapGenerator/Resources" unique_id=1356875824 instance=ExtResource("5_jlsqs")]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -600.0
+offset_right = 0.0
+offset_bottom = 746.0
+grow_horizontal = 0
+grow_vertical = 2
 
 [node name="Citizens" type="Node2D" parent="." unique_id=803649408]
 script = ExtResource("7_nxtc6")

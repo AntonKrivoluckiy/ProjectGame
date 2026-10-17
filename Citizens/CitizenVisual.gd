@@ -11,12 +11,18 @@ func Setup(id: int):
 	
 func UpdateDisplay():
 	var data = PopManager.GetCitizen(citizen_id)
-	
 	if data == null:
 		return
 		
 	var tile_size = 16
 	position = data.world_position
+	
+	if data.is_alive:
+		if sprite.animation != "Allive":
+			sprite.play("Allive")
+	else:
+		if sprite.animation != "Death":
+			sprite.play("Death")
 
 func _process(delta: float) -> void:
 	if citizen_id != -1:

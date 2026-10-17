@@ -6,7 +6,6 @@ var citizen_scene: PackedScene = preload("res://Citizens/Сitizen.tscn")
 var visible_nodes: Dictionary = {}
 
 func _ready() -> void:
-	print("CitizenRender ready, citizens count: ", PopManager.Citizens.size())
 	PopManager.citizen_born.connect(_CitizenBorn)
 	PopManager.citizen_diet.connect(_CitizenDiet)
 	
@@ -18,8 +17,8 @@ func CreateVisual(citizen_id: int):
 		return # уже есть
 	
 	var visual = citizen_scene.instantiate()
-	visual.Setup(citizen_id)
 	add_child(visual)
+	visual.Setup(citizen_id)
 	visible_nodes[citizen_id] = visual
 
 func RemoveVisual(citizen_id: int):

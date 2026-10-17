@@ -32,6 +32,13 @@ func CreateSitizen(cit_name: String, cit_gender: String, cit_position: Vector2i)
 
 func UpdateAllCitizens(delta_time: float):
 	for Citizen in Citizens.values():
+		# Death Citizen
+		if not Citizen.is_alive:
+			Citizen.death_timer -= delta_time
+			if Citizen.death_timer <= 0.0:
+				KillCitizens(Citizen.id)
+			continue
+		
 		#Simple Wander
 		Citizen.wander_timer -= delta_time
 
@@ -101,8 +108,11 @@ func UpdateAllCitizens(delta_time: float):
 			Citizen.health = max(0.0, Citizen.health - 1)
 		
 		# death
-		if Citizen.health <= 0:
+		if Citizen.health <= 0 and Citizen.is_alive:
 			Citizen.is_alive = false
+			Citizen.path.clear()
+			Citizen.path_index = 0
+			Citizen.death_timer = 10.0
 
 var male_names: Array[String] = ["Tom", "Petr", "Ivan"]
 var female_name: Array[String] = ["Elisa", "Alisa", "Maria"]
@@ -126,7 +136,7 @@ func RemoveCitizen():
 	var to_remove: Array[int] = []
 	
 	for id in Citizens:
-		if not Citizens[id].is_alive:
+		if not Citizens[id].is_alive and Citizens[id].death_timer <= 0.0:
 			to_remove.append(id)
 	
 	for id in to_remove:

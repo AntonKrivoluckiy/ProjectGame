@@ -8,18 +8,18 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_vkf5g")
-}],
-"loop": 1,
-"name": &"Allive",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("2_gddk6")
 }],
 "loop": 1,
 "name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vkf5g")
+}],
+"loop": 1,
+"name": &"allive",
 "speed": 5.0
 }]
 
@@ -34,7 +34,7 @@ script = ExtResource("1_5lvt4")
 position = Vector2(-0.09999962, 0)
 scale = Vector2(0.3021739, 0.3)
 sprite_frames = SubResource("SpriteFrames_usgnq")
-animation = &"Allive"
+animation = &"allive"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1132515033]
 shape = SubResource("CapsuleShape2D_usgnq")

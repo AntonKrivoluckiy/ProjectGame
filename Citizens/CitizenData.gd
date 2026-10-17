@@ -19,3 +19,4 @@ var path: Array[Vector2i] = []
 var path_index: int = 0
 
 var is_alive: bool = true
+var death_timer: float = -1.0
