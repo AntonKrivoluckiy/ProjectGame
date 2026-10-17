@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dj88xsyba1wwn"]
 
 [ext_resource type="Script" uid="uid://b000k0smjf62m" path="res://Citizens/CitizenVisual.gd" id="1_5lvt4"]
+[ext_resource type="Texture2D" uid="uid://bbmaju8qhsmt0" path="res://Textures/DeathCitizen.png" id="2_gddk6"]
 [ext_resource type="Texture2D" uid="uid://c04hasn1c3uwh" path="res://Textures/BaseCitizen.png" id="2_vkf5g"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_usgnq"]
@@ -10,7 +11,15 @@ animations = [{
 "texture": ExtResource("2_vkf5g")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"Allive",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gddk6")
+}],
+"loop": 1,
+"name": &"Death",
 "speed": 5.0
 }]
 
@@ -22,8 +31,10 @@ height = 20.0
 script = ExtResource("1_5lvt4")
 
 [node name="CitizenTexture" type="AnimatedSprite2D" parent="." unique_id=1670516855]
-scale = Vector2(0.3, 0.3)
+position = Vector2(-0.09999962, 0)
+scale = Vector2(0.3021739, 0.3)
 sprite_frames = SubResource("SpriteFrames_usgnq")
+animation = &"Allive"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1132515033]
 shape = SubResource("CapsuleShape2D_usgnq")

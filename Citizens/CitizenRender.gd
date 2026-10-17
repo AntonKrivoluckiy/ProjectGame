@@ -11,7 +11,6 @@ func _ready() -> void:
 	PopManager.citizen_diet.connect(_CitizenDiet)
 	
 	for id in PopManager.Citizens:
-		print("Creating visual for existing citizen: ", id)
 		CreateVisual(id)
 
 func CreateVisual(citizen_id: int):
@@ -29,7 +28,6 @@ func RemoveVisual(citizen_id: int):
 		visible_nodes.erase(citizen_id)
 
 func _CitizenBorn(citizen_id: int):
-	print("Signal citizen_born received for id: ", citizen_id)
 	CreateVisual(citizen_id)
 
 func _CitizenDiet(citizen_id: int):

@@ -83,14 +83,9 @@ func execute_command(command: String) -> void:
 			if parts.size() > 1 and parts[1] == "citizen":
 				var cit_pos = Vector2i(cam_pos.x + randi() % 4, cam_pos.y + randi() % 4)
 				var citizen_name = PopManager.GenerateRandomName()
-				var gender: String
-				if citizen_name["gender"] == 1:
-					gender = "Male"
-				else:
-					gender = "Female"
 				PopManager.CreateSitizen(
 					citizen_name["name"],
-					gender,
+					citizen_name["gender"],
 					cit_pos
 				)
 				add_message("Citizen spawn on " + str(cit_pos))
