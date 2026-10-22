@@ -147,7 +147,7 @@ func CreateCellData(type_id: int) -> CellData:
 	data.swim_speed = props.get("swim_speed", 0.0)
 	data.fertility = props.get("fertility", 0.0)
 	data.can_have_builds = props.get("can_have_builds", false)
-	data.have_buids = props.get("have_builds", false)
+	data.have_builds = props.get("have_builds", false)
 	
 	return data
 	

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://csmotnf578exv"]
 
-[ext_resource type="Script" uid="uid://buys2yjqglxn6" path="res://Scripts/MapGenerator.gd" id="1_1goki"]
+[ext_resource type="Script" uid="uid://buys2yjqglxn6" path="res://Map/MapGenerator.gd" id="1_1goki"]
 [ext_resource type="Texture2D" uid="uid://do312x82h7j3j" path="res://Textures/GameMapTerrain.png" id="2_bhm3l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3wd64"]

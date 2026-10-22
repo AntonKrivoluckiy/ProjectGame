@@ -21,6 +21,7 @@ PopManager="*uid://b38upobqitcpg"
 Console="*uid://bqg3bnjb60pe1"
 TileDatabase="*uid://dybu8egrepuw5"
 ResourcesManager="*uid://diyreuwoggm6i"
+BuildManager="*uid://e2s5siigc37e"
 
 [display]
 

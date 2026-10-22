@@ -140,12 +140,18 @@ func execute_command(command: String) -> void:
 						ResourcesManager.food = 0
 						add_message("Deleted all food")
 					else:
-						ResourcesManager.food = min(0, ResourcesManager.food - del_food)
+						ResourcesManager.food = max(0, ResourcesManager.food - del_food)
 						add_message("Deleted " + str(del_food) + " food")
 				else:
 					add_message("Try Ussage: /del food <num>")
 		
-		
+		"/spawn_building":
+			var id = BuildManager.CreateBuilding("hut_2x2", cam_pos)
+			if id >= 0:
+				add_message("Building created id=%d at %s" % [id, str(cam_pos)])
+				print(BuildManager.buildings)
+			else:
+				add_message("failed to create building")
 		_:
 			add_message("Unknown kommand: " + cmd + ". Ussage /help")
 

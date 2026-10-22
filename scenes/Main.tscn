@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c0sdag0k3c8m4"]
 
-[ext_resource type="PackedScene" uid="uid://csmotnf578exv" path="res://scenes/MapGenerator.tscn" id="1_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://csmotnf578exv" path="res://Map/MapGenerator.tscn" id="1_0bbpv"]
 [ext_resource type="Script" uid="uid://fcplbebt442h" path="res://Scripts/ExitScript.gd" id="1_nxtc6"]
 [ext_resource type="PackedScene" uid="uid://d23dxtcw7u3qb" path="res://console/ConsoleUI.tscn" id="2_rarhs"]
 [ext_resource type="Script" uid="uid://cjifufn7t3w4j" path="res://Scripts/СameraControl.gd" id="2_vcsgt"]
