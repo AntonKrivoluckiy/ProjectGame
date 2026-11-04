@@ -27,27 +27,27 @@ func _register_types() -> void:
 
 func _register_default_blueprints() -> void:
 	# заглушка house 2x2: пол + стены по краю + дверь
-	var hut_2x2 = Blueprint.new("hut", "hut2x2", "dwellind")
+	var hut = Blueprint.new("hut", "hut", "dwelling")
 	# floor
-	hut_2x2.add_cell(Vector2i(1, 1), "floor")
-	hut_2x2.add_cell(Vector2i(1, 2), "floor")
-	hut_2x2.add_cell(Vector2i(2, 1), "floor")
-	hut_2x2.add_cell(Vector2i(2, 2), "floor")
+	hut.add_cell(Vector2i(1, 1), "floor")
+	hut.add_cell(Vector2i(1, 2), "floor")
+	hut.add_cell(Vector2i(2, 1), "floor")
+	hut.add_cell(Vector2i(2, 2), "floor")
 	# walls
-	hut_2x2.add_cell(Vector2i(0, 0), "wall")
-	hut_2x2.add_cell(Vector2i(0, 1), "wall")
-	hut_2x2.add_cell(Vector2i(0, 2), "wall")
-	hut_2x2.add_cell(Vector2i(0, 3), "wall")
-	hut_2x2.add_cell(Vector2i(1, 0), "wall")
-	hut_2x2.add_cell(Vector2i(1, 3), "wall")
-	hut_2x2.add_cell(Vector2i(2, 0), "wall")
-	hut_2x2.add_cell(Vector2i(2, 3), "wall")
-	hut_2x2.add_cell(Vector2i(3, 0), "wall")
-	hut_2x2.add_cell(Vector2i(3, 1), "wall")
-	hut_2x2.add_cell(Vector2i(3, 2), "door")
-	hut_2x2.add_cell(Vector2i(3, 3), "wall")
+	hut.add_cell(Vector2i(0, 0), "wall")
+	hut.add_cell(Vector2i(0, 1), "wall")
+	hut.add_cell(Vector2i(0, 2), "wall")
+	hut.add_cell(Vector2i(0, 3), "wall")
+	hut.add_cell(Vector2i(1, 0), "wall")
+	hut.add_cell(Vector2i(1, 3), "wall")
+	hut.add_cell(Vector2i(2, 0), "wall")
+	hut.add_cell(Vector2i(2, 3), "wall")
+	hut.add_cell(Vector2i(3, 0), "wall")
+	hut.add_cell(Vector2i(3, 1), "wall")
+	hut.add_cell(Vector2i(3, 2), "door")
+	hut.add_cell(Vector2i(3, 3), "wall")
 	
-	blueprints[hut_2x2.id] = hut_2x2
+	blueprints[hut.id] = hut
 	
 func GetBlueprint(blueprint_id: String) -> Blueprint:
 	return blueprints.get(blueprint_id, null)
@@ -104,3 +104,49 @@ func ClearSelection() -> void:
 	
 func IsSelected(blueprint_id: String) -> bool:
 	return selected_blueprint_id == blueprint_id
+
+func CanPlaceBuilding(blueprint_id: String, origin: Vector2i) -> bool:
+	var bp = GetBlueprint(blueprint_id)
+	if bp == null:
+		return false
+	
+	for cell in bp.cells:
+		var tile: Vector2i = origin + cell.offset
+		var map_cell = TileDatabase.GetCell(tile)
+		
+		# нет клетки / за краем карты
+		if map_cell == null:
+			return false
+		# биом не позволяет строить (вода, горы…)
+		if not map_cell.can_have_builds:
+			return false
+		# уже что-то стоит
+		if map_cell.have_builds:
+			return false
+		# на всякий случай — другой building
+		if GetBuildingAtTile(tile) != null:
+			return false
+	
+	return true
+	
+func TryPlaceBuilding(blueprint_id: String, origin: Vector2i) -> int:
+	if blueprint_id == "":
+		return -1
+	if not CanPlaceBuilding(blueprint_id, origin):
+		return -1
+	
+	var id = CreateBuilding(blueprint_id, origin)
+	if id < 0:
+		return -1
+	
+	_mark_cells_occupied(blueprint_id, origin, true)
+	return id
+
+func _mark_cells_occupied(blueprint_id: String, origin: Vector2i, occupied: bool) -> void:
+	var bp = GetBlueprint(blueprint_id)
+	if bp == null:
+		return
+	for cell in bp.cells:
+		var map_cell = TileDatabase.GetCell(origin + cell.offset)
+		if map_cell:
+			map_cell.have_builds = occupied

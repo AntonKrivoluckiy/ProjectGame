@@ -85,19 +85,38 @@ func _ready() -> void:
 var region_info_mode = false
 var citizen_info_mode = false
 
+func _is_pointer_over_blocking_ui() -> bool:
+	var hovered = get_viewport().gui_get_hovered_control()
+	if hovered == null:
+		return false
+	# клики по консоли для info-режимов разрешаем «сквозь» логику карты
+	# блокируем только меню построек и т.п.
+	if hovered is LineEdit:
+		return true  # печатаем в консоль — карту не трогаем
+	var build_menu = get_tree().root.find_child("BuildMenuUI", true, false)
+	if build_menu and build_menu.is_ancestor_of(hovered):
+		return true
+	return false
+
 func _input(event: InputEvent):
-	# Получаем позицию мыши в мировых координатах
+	if not (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
+		return
+	
+	var console = get_tree().root.find_child("ConsoleUI", true, false)
 	var mouse_pos = get_global_mouse_position()
 	var tile_pos = tilemap.local_to_map(mouse_pos)
-
-	## Проверяем, что это клик левой кнопкой
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		# Переводим в координаты тайла
-		var atlas_coords = tilemap.get_cell_atlas_coords(tile_pos)
-		
-		## Проверяем, не открыта ли консоль (чтобы не мешать вводу)
-		var console = get_tree().root.find_child("ConsoleUI", true, false)
-		
+	
+	# Building
+	if BuildManager.selected_blueprint_id != "":
+		if console and console.visible:
+			pass  # не строим, но не return — ниже может быть info
+		elif _is_pointer_over_blocking_ui():
+			return
+		else:
+			BuildManager.TryPlaceBuilding(BuildManager.selected_blueprint_id, tile_pos)
+			return
+	
+	# Console
 		if console and not console.visible:
 			return
 		
