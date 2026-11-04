@@ -26,28 +26,28 @@ func _register_types() -> void:
 	)
 
 func _register_default_blueprints() -> void:
-	# house 2x2: пол + стены по краю + дверь
-	var hut = Blueprint.new("hut_2x2", "hut", "dwellind")
+	# заглушка house 2x2: пол + стены по краю + дверь
+	var hut_2x2 = Blueprint.new("hut", "hut2x2", "dwellind")
 	# floor
-	hut.add_cell(Vector2i(1, 1), "floor")
-	hut.add_cell(Vector2i(1, 2), "floor")
-	hut.add_cell(Vector2i(2, 1), "floor")
-	hut.add_cell(Vector2i(2, 2), "floor")
+	hut_2x2.add_cell(Vector2i(1, 1), "floor")
+	hut_2x2.add_cell(Vector2i(1, 2), "floor")
+	hut_2x2.add_cell(Vector2i(2, 1), "floor")
+	hut_2x2.add_cell(Vector2i(2, 2), "floor")
 	# walls
-	hut.add_cell(Vector2i(0, 0), "wall")
-	hut.add_cell(Vector2i(0, 1), "wall")
-	hut.add_cell(Vector2i(0, 2), "wall")
-	hut.add_cell(Vector2i(0, 3), "wall")
-	hut.add_cell(Vector2i(1, 0), "wall")
-	hut.add_cell(Vector2i(1, 3), "wall")
-	hut.add_cell(Vector2i(2, 0), "wall")
-	hut.add_cell(Vector2i(2, 3), "wall")
-	hut.add_cell(Vector2i(3, 0), "wall")
-	hut.add_cell(Vector2i(3, 1), "wall")
-	hut.add_cell(Vector2i(3, 2), "door")
-	hut.add_cell(Vector2i(3, 3), "wall")
+	hut_2x2.add_cell(Vector2i(0, 0), "wall")
+	hut_2x2.add_cell(Vector2i(0, 1), "wall")
+	hut_2x2.add_cell(Vector2i(0, 2), "wall")
+	hut_2x2.add_cell(Vector2i(0, 3), "wall")
+	hut_2x2.add_cell(Vector2i(1, 0), "wall")
+	hut_2x2.add_cell(Vector2i(1, 3), "wall")
+	hut_2x2.add_cell(Vector2i(2, 0), "wall")
+	hut_2x2.add_cell(Vector2i(2, 3), "wall")
+	hut_2x2.add_cell(Vector2i(3, 0), "wall")
+	hut_2x2.add_cell(Vector2i(3, 1), "wall")
+	hut_2x2.add_cell(Vector2i(3, 2), "door")
+	hut_2x2.add_cell(Vector2i(3, 3), "wall")
 	
-	blueprints[hut.id] = hut
+	blueprints[hut_2x2.id] = hut_2x2
 	
 func GetBlueprint(blueprint_id: String) -> Blueprint:
 	return blueprints.get(blueprint_id, null)
@@ -85,3 +85,22 @@ func GetBuildingAtTile(tile: Vector2i) -> Building:
 			if b.origin + cell.offset == tile:
 				return b
 	return null
+
+var selected_blueprint_id = "" # "" - ничего не выбрано
+
+signal selection_changed(blueprint_id: String)
+
+func SelectBlueprint(blueprint_id: String) -> void:
+	# повторный клик - снять выбор
+	if selected_blueprint_id == blueprint_id:
+		selected_blueprint_id = ""
+	else:
+		selected_blueprint_id = blueprint_id
+	selection_changed.emit(selected_blueprint_id)
+	
+func ClearSelection() -> void:
+	selected_blueprint_id = ""
+	selection_changed.emit(selected_blueprint_id)
+	
+func IsSelected(blueprint_id: String) -> bool:
+	return selected_blueprint_id == blueprint_id

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://7v3xyy3cfymx" path="res://scenes/ResourcesUI.tscn" id="5_jlsqs"]
 [ext_resource type="Script" uid="uid://ccla3lnviq77g" path="res://Citizens/CitizenRender.gd" id="7_nxtc6"]
 [ext_resource type="Script" uid="uid://dod3ixpt623a1" path="res://Scripts/Resources.gd" id="7_q8u5g"]
+[ext_resource type="PackedScene" uid="uid://bw5qa5jmcutk0" path="res://scenes/BuildMenuUI.tscn" id="9_lhr70"]
 
 [node name="Main" type="Node2D" unique_id=8242718]
 script = ExtResource("1_nxtc6")
@@ -44,6 +45,10 @@ offset_right = 0.0
 offset_bottom = 746.0
 grow_horizontal = 0
 grow_vertical = 2
+
+[node name="BuildMenu" type="CanvasLayer" parent="MapGenerator" unique_id=445518765]
+
+[node name="BuildMenuUI" parent="MapGenerator/BuildMenu" unique_id=1220638879 instance=ExtResource("9_lhr70")]
 
 [node name="Citizens" type="Node2D" parent="." unique_id=803649408]
 script = ExtResource("7_nxtc6")
