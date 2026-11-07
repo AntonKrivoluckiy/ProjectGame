@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bdgcrtufp0u3p"]
+
+[ext_resource type="Script" uid="uid://bnj2gya5ruygv" path="res://Scripts/BuildRender.gd" id="1_qv5jp"]
+[ext_resource type="Texture2D" uid="uid://bwx54657gu3ak" path="res://Textures/BuildingItems.png" id="1_xbrst"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qv5jp"]
+texture = ExtResource("1_xbrst")
+0:0/0 = 0
+1:0/0 = 0
+2:0/next_alternative_id = 3
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_eg8xt"]
+sources/0 = SubResource("TileSetAtlasSource_qv5jp")
+
+[node name="Buildings" type="Node2D" unique_id=625797992]
+script = ExtResource("1_qv5jp")
+
+[node name="BuildingsLayer" type="TileMapLayer" parent="." unique_id=124354127]
+tile_set = SubResource("TileSet_eg8xt")

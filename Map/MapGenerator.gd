@@ -117,16 +117,16 @@ func _input(event: InputEvent):
 			return
 	
 	# Console
-		if console and not console.visible:
-			return
-		
-		#Region info
-		if region_info_mode:
-			# Проверяем, что координаты в пределах карты
-			if tile_pos.x >= 0 and tile_pos.x < MapHeight and tile_pos.y >= 0 and tile_pos.y < MapWidth:
-				var region_info = tile_data[tile_pos]
-				
-				Console.add_message(
+	if console and not console.visible:
+		return
+	
+	#Region info
+	if region_info_mode:
+		# Проверяем, что координаты в пределах карты
+		if tile_pos.x >= 0 and tile_pos.x < MapHeight and tile_pos.y >= 0 and tile_pos.y < MapWidth:
+			var region_info = tile_data[tile_pos]
+			
+			Console.add_message(
 "
 ==========REGION INFO==========
 Position: {0}:
@@ -138,10 +138,11 @@ Position: {0}:
 		- Swim speed: {5}
 		Fertility: {6}
 		Can have builds: {7}
+		- Have build: {8}
 	__________
 ==========REGION INFO=========="
 .format([tile_pos, region_info.name, region_info.walk, region_info.walk_speed, region_info.swim, region_info.swim_speed, 
-region_info.fertility, region_info.can_have_builds]))
+region_info.fertility, region_info.can_have_builds, region_info.have_builds]))
 		
 		#Citizen info
 		if citizen_info_mode:

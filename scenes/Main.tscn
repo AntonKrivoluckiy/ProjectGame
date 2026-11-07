@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://ccla3lnviq77g" path="res://Citizens/CitizenRender.gd" id="7_nxtc6"]
 [ext_resource type="Script" uid="uid://dod3ixpt623a1" path="res://Scripts/Resources.gd" id="7_q8u5g"]
 [ext_resource type="PackedScene" uid="uid://bw5qa5jmcutk0" path="res://scenes/BuildMenuUI.tscn" id="9_lhr70"]
+[ext_resource type="PackedScene" uid="uid://bdgcrtufp0u3p" path="res://scenes/Buildings.tscn" id="11_wp0k4"]
 
 [node name="Main" type="Node2D" unique_id=8242718]
 script = ExtResource("1_nxtc6")
@@ -52,3 +53,5 @@ grow_vertical = 2
 
 [node name="Citizens" type="Node2D" parent="." unique_id=803649408]
 script = ExtResource("7_nxtc6")
+
+[node name="Buildings" parent="." unique_id=625797992 instance=ExtResource("11_wp0k4")]
