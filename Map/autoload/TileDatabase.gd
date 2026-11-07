@@ -26,8 +26,8 @@ func RegType(type_id: int, props: Dictionary):
 func PropInit():
 	RegType(TileType.Deepwater, {
 		"name": "Deep Water",
-		"base_walk": false,
-		"base_walk_speed": 0.0,
+		"walk": false,
+		"walk_speed": 0.0,
 		"swim": true,
 		"swim_speed": 0.4,
 		"fertility": 0.0,
@@ -36,8 +36,8 @@ func PropInit():
 	})
 	RegType(TileType.Water, {
 		"name": "Water",
-		"base_walk": false,
-		"base_walk_speed": 0.0,
+		"walk": false,
+		"walk_speed": 0.0,
 		"swim": true,
 		"swim_speed": 0.5,
 		"fertility": 0.0,
@@ -46,8 +46,8 @@ func PropInit():
 	})
 	RegType(TileType.Sandwater, {
 		"name": "Sand Water",
-		"base_walk": false,
-		"base_walk_speed": 0.0,
+		"walk": false,
+		"walk_speed": 0.0,
 		"swim": true,
 		"swim_speed": 0.6,
 		"fertility": 0.0,
@@ -56,8 +56,8 @@ func PropInit():
 	})
 	RegType(TileType.Beach, {
 		"name": "Beach",
-		"base_walk": true,
-		"base_walk_speed": 0.4,
+		"walk": true,
+		"walk_speed": 0.4,
 		"swim": false,
 		"swim_speed": 0.0,
 		"fertility": 0.4,
@@ -66,8 +66,8 @@ func PropInit():
 	})
 	RegType(TileType.Field, {
 		"name": "Field",
-		"base_walk": true,
-		"base_walk_speed": 0.9,
+		"walk": true,
+		"walk_speed": 0.9,
 		"swim": false,
 		"swim_speed": 0.0,
 		"fertility": 0.5,
@@ -76,8 +76,8 @@ func PropInit():
 	})
 	RegType(TileType.Smalforest, {
 		"name": "Smal Forest",
-		"base_walk": true,
-		"base_walk_speed": 0.8,
+		"walk": true,
+		"walk_speed": 0.8,
 		"swim": false,
 		"swim_speed": 0.0,
 		"fertility": 0.6,
@@ -86,8 +86,8 @@ func PropInit():
 	})
 	RegType(TileType.Forest, {
 		"name": "Forest",
-		"base_walk": true,
-		"base_walk_speed": 0.7,
+		"walk": true,
+		"walk_speed": 0.7,
 		"swim": false,
 		"swim_speed": 0.0,
 		"fertility": 0.7,
@@ -96,8 +96,8 @@ func PropInit():
 	})
 	RegType(TileType.Bigforest, {
 		"name": "Big Forest",
-		"base_walk": true,
-		"base_walk_speed": 0.6,
+		"walk": true,
+		"walk_speed": 0.6,
 		"swim": false,
 		"swim_speed": 0.0,
 		"fertility": 0.8,
@@ -106,8 +106,8 @@ func PropInit():
 	})
 	RegType(TileType.Hills, {
 		"name": "Hills",
-		"base_walk": true,
-		"base_walk_speed": 0.4,
+		"walk": true,
+		"walk_speed": 0.4,
 		"swim": false,
 		"swim_speed": 0.0,
 		"fertility": 0.4,
@@ -116,8 +116,8 @@ func PropInit():
 	})
 	RegType(TileType.Mountain, {
 		"name": "Mountain",
-		"base_walk": true,
-		"base_walk_speed": 0.2,
+		"walk": true,
+		"walk_speed": 0.2,
 		"swim": false,
 		"swim_speed": 0.0,
 		"fertility": 0.0,
@@ -126,8 +126,8 @@ func PropInit():
 	})
 	RegType(TileType.Snowmountain, {
 		"name": "Snow Mountain",
-		"base_walk": false,
-		"base_walk_speed": 0.0,
+		"walk": false,
+		"walk_speed": 0.0,
 		"swim": false,
 		"swim_speed": 0.0,
 		"fertility": 0.0,

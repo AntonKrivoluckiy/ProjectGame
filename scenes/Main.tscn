@@ -51,7 +51,7 @@ grow_vertical = 2
 
 [node name="BuildMenuUI" parent="MapGenerator/BuildMenu" unique_id=1220638879 instance=ExtResource("9_lhr70")]
 
+[node name="Buildings" parent="." unique_id=625797992 instance=ExtResource("11_wp0k4")]
+
 [node name="Citizens" type="Node2D" parent="." unique_id=803649408]
 script = ExtResource("7_nxtc6")
-
-[node name="Buildings" parent="." unique_id=625797992 instance=ExtResource("11_wp0k4")]
