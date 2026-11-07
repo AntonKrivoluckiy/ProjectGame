@@ -13,6 +13,22 @@ func _ready() -> void:
 	_register_types()
 	_register_default_blueprints()
 	
+func _process(delta: float) -> void:
+	UpdateProduction(delta)
+	
+func UpdateProduction(delta):
+	for b in buildings.values():
+		var bp: Blueprint = GetBlueprint(b.blueprint_id)
+		if bp == null:
+			continue
+		if bp.produces_food <= 0:
+			continue  # хижина и прочее без производства
+		
+		b.production_timer -= delta
+		if b.production_timer <= 0.0:
+			ResourcesManager.food += bp.produces_food
+			b.production_timer = bp.production_timer  # снова 60 сек
+	
 func _register_types() -> void:
 	building_types["dwelling"] = BuildingType.new(
 		"dwelling",
@@ -51,6 +67,8 @@ func _register_default_blueprints() -> void:
 	# заглушка farm 2х2: 4 поля
 	var farm = Blueprint.new("farm", "simple_farm", "farmers")
 	farm.cost_wood = 10
+	farm.produces_food = 5
+	farm.production_timer = 60.0
 	farm.add_cell(Vector2i(0, 0), "field")
 	farm.add_cell(Vector2i(0, 1), "field")
 	farm.add_cell(Vector2i(1, 0), "field")
@@ -71,6 +89,7 @@ func CreateBuilding(blueprint_id: String, origin: Vector2i) -> int:
 	b.id = next_id
 	b.blueprint_id = blueprint_id
 	b.origin = origin
+	b.production_timer = bp.production_timer
 	
 	buildings[next_id] = b
 	building_created.emit(next_id)

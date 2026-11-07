@@ -81,14 +81,19 @@ func execute_command(command: String) -> void:
 		# SPAWN
 		"/spawn":
 			if parts.size() > 1 and parts[1] == "citizen":
-				var cit_pos = Vector2i(cam_pos.x + randi() % 4, cam_pos.y + randi() % 4)
-				var citizen_name = PopManager.GenerateRandomName()
-				PopManager.CreateSitizen(
-					citizen_name["name"],
-					citizen_name["gender"],
-					cit_pos
-				)
-				add_message("Citizen spawn on " + str(cit_pos))
+				var spawn_value = 1
+				if parts[2] and parts[2].is_valid_int():
+					spawn_value = int(parts[2])
+				
+				for i in spawn_value:
+					var cit_pos = Vector2i(cam_pos.x + randi() % 4, cam_pos.y + randi() % 4)
+					var citizen_name = PopManager.GenerateRandomName()
+					PopManager.CreateSitizen(
+						citizen_name["name"],
+						citizen_name["gender"],
+						cit_pos
+					)
+					add_message("Citizen spawn on " + str(cit_pos))
 			else:
 				add_message("Try Usage: /spawn citizen")
 				
@@ -128,8 +133,13 @@ func execute_command(command: String) -> void:
 					var add_food = int (parts[2])
 					ResourcesManager.food += add_food
 					add_message("Added " + str(add_food) + " food")
+				if parts[1] == "wood" and parts[2].is_valid_int():
+					var add_wood = int (parts[2])
+					ResourcesManager.wood += add_wood
+					add_message("Added " + str(add_wood) + " wood")
+				
 				else:
-					add_message("Try Ussage: /add food <num>")
+					add_message("Try Ussage: /add [food, wood] <num>")
 		
 		# DEL RESOURCES
 		"/del":
@@ -142,16 +152,18 @@ func execute_command(command: String) -> void:
 					else:
 						ResourcesManager.food = max(0, ResourcesManager.food - del_food)
 						add_message("Deleted " + str(del_food) + " food")
+				if parts[1] == "wood" and parts[2].is_valid_int():
+					var del_food = int(parts[2])
+					if del_food == -1:
+						ResourcesManager.food = 0
+						add_message("Deleted all wood")
+					else:
+						ResourcesManager.food = max(0, ResourcesManager.food - del_food)
+						add_message("Deleted " + str(del_food) + " wood")
+				
 				else:
-					add_message("Try Ussage: /del food <num>")
+					add_message("Try Ussage: /del [food, wood] <num>")
 		
-		"/spawn_building":
-			var id = BuildManager.CreateBuilding("hut_2x2", cam_pos)
-			if id >= 0:
-				add_message("Building created id=%d at %s" % [id, str(cam_pos)])
-				print(BuildManager.buildings)
-			else:
-				add_message("failed to create building")
 		_:
 			add_message("Unknown kommand: " + cmd + ". Ussage /help")
 

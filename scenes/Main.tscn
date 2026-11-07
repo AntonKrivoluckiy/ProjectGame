@@ -21,6 +21,10 @@ script = ExtResource("1_nxtc6")
 position = Vector2(1000, 746)
 script = ExtResource("2_vcsgt")
 
+[node name="BuildMenu" type="CanvasLayer" parent="MapGenerator" unique_id=445518765]
+
+[node name="BuildMenuUI" parent="MapGenerator/BuildMenu" unique_id=1220638879 instance=ExtResource("9_lhr70")]
+
 [node name="Console" type="CanvasLayer" parent="MapGenerator" unique_id=1977292062]
 
 [node name="ConsoleUI" parent="MapGenerator/Console" unique_id=1239430367 instance=ExtResource("2_rarhs")]
@@ -46,10 +50,6 @@ offset_right = 0.0
 offset_bottom = 746.0
 grow_horizontal = 0
 grow_vertical = 2
-
-[node name="BuildMenu" type="CanvasLayer" parent="MapGenerator" unique_id=445518765]
-
-[node name="BuildMenuUI" parent="MapGenerator/BuildMenu" unique_id=1220638879 instance=ExtResource("9_lhr70")]
 
 [node name="Buildings" parent="." unique_id=625797992 instance=ExtResource("11_wp0k4")]
 

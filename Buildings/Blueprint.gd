@@ -8,6 +8,9 @@ var cells: Array[BlueprintCell] = []
 
 var cost_wood: int = 0
 
+var produces_food: int = 0 # 0 - ничего
+var production_timer: float = 0.0 
+
 func _init(p_id: String = "", p_name: String = "", p_type: String = "dwelling") -> void:
 	id = p_id
 	name = p_name
