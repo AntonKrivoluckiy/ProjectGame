@@ -139,16 +139,17 @@ Position: {0}:
 		Fertility: {6}
 		Can have builds: {7}
 		- Have build: {8}
+		- Can walk: {}
 	__________
 ==========REGION INFO=========="
 .format([tile_pos, region_info.name, region_info.walk, region_info.walk_speed, region_info.swim, region_info.swim_speed, 
 region_info.fertility, region_info.can_have_builds, region_info.have_builds]))
 		
-		#Citizen info
-		if citizen_info_mode:
-			var citizen = PopManager.find_citizen_at_tile(tile_pos)
-			if citizen:
-				Console.add_message(
+	#Citizen info
+	if citizen_info_mode:
+		var citizen = PopManager.find_citizen_at_tile(tile_pos)
+		if citizen:
+			Console.add_message(
 "
 ==========CITIZEN INFO==========
 Citizen id {0}:

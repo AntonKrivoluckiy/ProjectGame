@@ -148,5 +148,25 @@ func _mark_cells_occupied(blueprint_id: String, origin: Vector2i, occupied: bool
 		return
 	for cell in bp.cells:
 		var map_cell = TileDatabase.GetCell(origin + cell.offset)
-		if map_cell:
-			map_cell.have_builds = occupied
+		if map_cell == null:
+			continue
+		
+		if occupied:
+			if not map_cell.have_builds:
+				map_cell.base_walk = map_cell.walk
+				map_cell.base_walk_speed = map_cell.walk_speed
+			map_cell.have_builds = true
+			match cell.part_id:
+				"wall":
+					map_cell.walk = false
+					map_cell.walk_speed = 0.0
+				"door":
+					map_cell.walk = true
+					# walk_speed можно не трогать
+				"floor":
+					map_cell.walk = true
+					map_cell.walk_speed = 1.0
+		else:
+			map_cell.have_builds = false
+			map_cell.walk = map_cell.base_walk
+			map_cell.walk_speed = map_cell.base_walk_speed
