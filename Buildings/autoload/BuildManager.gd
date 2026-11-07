@@ -55,7 +55,6 @@ func GetBlueprint(blueprint_id: String) -> Blueprint:
 func CreateBuilding(blueprint_id: String, origin: Vector2i) -> int:
 	var bp = GetBlueprint(blueprint_id)
 	if bp == null:
-		push_warning("Blueprint not found: " + blueprint_id)
 		return -1
 	
 	var b = Building.new()
@@ -132,13 +131,23 @@ func CanPlaceBuilding(blueprint_id: String, origin: Vector2i) -> bool:
 func TryPlaceBuilding(blueprint_id: String, origin: Vector2i) -> int:
 	if blueprint_id == "":
 		return -1
+	
+	# 1) хватает ли дерева
+	const COST := 20
+	if ResourcesManager.wood < COST:
+		return -1   # или сообщение в консоль
+	
+	# 2) можно ли по клеткам
 	if not CanPlaceBuilding(blueprint_id, origin):
 		return -1
 	
+	# 3) создаём
 	var id = CreateBuilding(blueprint_id, origin)
 	if id < 0:
 		return -1
 	
+	# 4) списываем только после успеха
+	ResourcesManager.wood -= COST
 	_mark_cells_occupied(blueprint_id, origin, true)
 	return id
 

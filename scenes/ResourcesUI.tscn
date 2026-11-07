@@ -29,3 +29,14 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
 text = "Food: "
 metadata/_edit_use_anchors_ = true
+
+[node name="WoodUI" type="Label" parent="." unique_id=1104626812]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.11176471
+anchor_right = 1.0
+anchor_bottom = 0.17058824
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "Wood: "
+metadata/_edit_use_anchors_ = true
