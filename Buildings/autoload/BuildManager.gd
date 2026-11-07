@@ -19,15 +19,16 @@ func _register_types() -> void:
 		"housing",
 		["floor", "wall", "door", "window", "oven"]
 	)
-	building_types["workshop"] = BuildingType.new(
-		"workshop",
-		"workshop",
-		["floor", "wall", "door", "window", "workbench"]
+	building_types["farm"] = BuildingType.new(
+		"field",
+		"farm",
+		["field", "floor", "wall", "door", "window", "oven"]
 	)
 
 func _register_default_blueprints() -> void:
 	# заглушка house 2x2: пол + стены по краю + дверь
-	var hut = Blueprint.new("hut", "hut", "dwelling")
+	var hut = Blueprint.new("hut", "simple_hut", "dwelling")
+	hut.cost_wood = 20
 	# floor
 	hut.add_cell(Vector2i(1, 1), "floor")
 	hut.add_cell(Vector2i(1, 2), "floor")
@@ -47,7 +48,16 @@ func _register_default_blueprints() -> void:
 	hut.add_cell(Vector2i(3, 2), "door")
 	hut.add_cell(Vector2i(3, 3), "wall")
 	
+	# заглушка farm 2х2: 4 поля
+	var farm = Blueprint.new("farm", "simple_farm", "farmers")
+	farm.cost_wood = 10
+	farm.add_cell(Vector2i(0, 0), "field")
+	farm.add_cell(Vector2i(0, 1), "field")
+	farm.add_cell(Vector2i(1, 0), "field")
+	farm.add_cell(Vector2i(1, 1), "field")
+	
 	blueprints[hut.id] = hut
+	blueprints[farm.id] = farm
 	
 func GetBlueprint(blueprint_id: String) -> Blueprint:
 	return blueprints.get(blueprint_id, null)
@@ -129,12 +139,11 @@ func CanPlaceBuilding(blueprint_id: String, origin: Vector2i) -> bool:
 	return true
 	
 func TryPlaceBuilding(blueprint_id: String, origin: Vector2i) -> int:
-	if blueprint_id == "":
+	var bp = GetBlueprint(blueprint_id)
+	if bp == null:
 		return -1
 	
-	# 1) хватает ли дерева
-	const COST := 20
-	if ResourcesManager.wood < COST:
+	if ResourcesManager.wood < bp.cost_wood:
 		return -1   # или сообщение в консоль
 	
 	# 2) можно ли по клеткам
@@ -147,7 +156,7 @@ func TryPlaceBuilding(blueprint_id: String, origin: Vector2i) -> int:
 		return -1
 	
 	# 4) списываем только после успеха
-	ResourcesManager.wood -= COST
+	ResourcesManager.wood -= bp.cost_wood
 	_mark_cells_occupied(blueprint_id, origin, true)
 	return id
 
@@ -175,6 +184,9 @@ func _mark_cells_occupied(blueprint_id: String, origin: Vector2i, occupied: bool
 				"floor":
 					map_cell.walk = true
 					map_cell.walk_speed = 1.0
+				"field":
+					map_cell.walk = true
+					map_cell.walk_speed = 0.4
 		else:
 			map_cell.have_builds = false
 			map_cell.walk = map_cell.base_walk

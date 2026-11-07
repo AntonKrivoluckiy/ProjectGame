@@ -6,6 +6,8 @@ var name: String = ""
 var building_type_id: String = "dwelling"
 var cells: Array[BlueprintCell] = []
 
+var cost_wood: int = 0
+
 func _init(p_id: String = "", p_name: String = "", p_type: String = "dwelling") -> void:
 	id = p_id
 	name = p_name

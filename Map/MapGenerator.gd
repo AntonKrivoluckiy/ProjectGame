@@ -139,7 +139,6 @@ Position: {0}:
 		Fertility: {6}
 		Can have builds: {7}
 		- Have build: {8}
-		- Can walk: {}
 	__________
 ==========REGION INFO=========="
 .format([tile_pos, region_info.name, region_info.walk, region_info.walk_speed, region_info.swim, region_info.swim_speed, 

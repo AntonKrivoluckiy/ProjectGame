@@ -4,6 +4,7 @@ const PART_ATLAS := {
 	"wall": Vector2i(0, 0),
 	"door": Vector2i(1, 0),
 	"floor": Vector2i(2, 0),
+	"field": Vector2i(0, 1)
 }
 
 @onready var buildings_layer: TileMapLayer = $"BuildingsLayer"
