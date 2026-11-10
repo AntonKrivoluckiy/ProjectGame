@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bdonq2a5pdcmo"]
+
+[ext_resource type="Script" uid="uid://ct28fcgcpu0kx" path="res://Scripts/MainMenu_script.gd" id="1_yqorp"]
+
+[node name="Main Menu" type="Panel" unique_id=1785710981]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -525.0
+offset_right = 200.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_yqorp")
+
+[node name="Heading" type="Label" parent="." unique_id=358507489]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+text = "Project Game"
+horizontal_alignment = 1
+
+[node name="Continue_Button" type="Button" parent="." unique_id=1991683155]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 25.0
+offset_bottom = 125.0
+grow_horizontal = 2
+text = "Continue (Work in process)"
+
+[node name="StartGame_Button" type="Button" parent="." unique_id=1251523475]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 125.0
+offset_bottom = 225.0
+grow_horizontal = 2
+text = "Start Game"
+
+[node name="LoadGame_Button" type="Button" parent="." unique_id=589870060]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 225.0
+offset_bottom = 325.0
+grow_horizontal = 2
+text = "Load Game (Work in process)"
+
+[node name="Optios_Button" type="Button" parent="." unique_id=875079614]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 325.0
+offset_bottom = 425.0
+grow_horizontal = 2
+text = "Optios (Work in process)"
+
+[node name="Exit_Button" type="Button" parent="." unique_id=1796424316]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Exit"

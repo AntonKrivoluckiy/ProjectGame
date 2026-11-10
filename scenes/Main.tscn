@@ -1,57 +1,14 @@
-[gd_scene format=3 uid="uid://c0sdag0k3c8m4"]
+[gd_scene format=3 uid="uid://coo007gritwol"]
 
-[ext_resource type="PackedScene" uid="uid://csmotnf578exv" path="res://Map/MapGenerator.tscn" id="1_0bbpv"]
-[ext_resource type="Script" uid="uid://fcplbebt442h" path="res://Scripts/ExitScript.gd" id="1_nxtc6"]
-[ext_resource type="PackedScene" uid="uid://d23dxtcw7u3qb" path="res://console/ConsoleUI.tscn" id="2_rarhs"]
-[ext_resource type="Script" uid="uid://cjifufn7t3w4j" path="res://Scripts/СameraControl.gd" id="2_vcsgt"]
-[ext_resource type="PackedScene" uid="uid://ckvn18umuyeuo" path="res://scenes/DebugUI.tscn" id="3_vcsgt"]
-[ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="4_c01mt"]
-[ext_resource type="PackedScene" uid="uid://7v3xyy3cfymx" path="res://scenes/ResourcesUI.tscn" id="5_jlsqs"]
-[ext_resource type="Script" uid="uid://ccla3lnviq77g" path="res://Citizens/CitizenRender.gd" id="7_nxtc6"]
-[ext_resource type="Script" uid="uid://dod3ixpt623a1" path="res://Scripts/Resources.gd" id="7_q8u5g"]
-[ext_resource type="PackedScene" uid="uid://bw5qa5jmcutk0" path="res://scenes/BuildMenuUI.tscn" id="9_lhr70"]
-[ext_resource type="PackedScene" uid="uid://bdgcrtufp0u3p" path="res://scenes/Buildings.tscn" id="11_wp0k4"]
+[ext_resource type="PackedScene" uid="uid://bdonq2a5pdcmo" path="res://scenes/MainMenu.tscn" id="1_elqb8"]
 
-[node name="Main" type="Node2D" unique_id=8242718]
-script = ExtResource("1_nxtc6")
+[node name="Main" type="Node2D" unique_id=1273970025]
 
-[node name="MapGenerator" parent="." unique_id=1302092449 instance=ExtResource("1_0bbpv")]
+[node name="Main Menu" parent="." unique_id=1785710981 instance=ExtResource("1_elqb8")]
+offset_left = 800.0
+offset_top = 975.0
+offset_right = 1200.0
+offset_bottom = 1500.0
 
-[node name="Camera2D" type="Camera2D" parent="MapGenerator" unique_id=1469881350]
-position = Vector2(1000, 746)
-script = ExtResource("2_vcsgt")
-
-[node name="BuildMenu" type="CanvasLayer" parent="MapGenerator" unique_id=445518765]
-
-[node name="BuildMenuUI" parent="MapGenerator/BuildMenu" unique_id=1220638879 instance=ExtResource("9_lhr70")]
-
-[node name="Console" type="CanvasLayer" parent="MapGenerator" unique_id=1977292062]
-
-[node name="ConsoleUI" parent="MapGenerator/Console" unique_id=1239430367 instance=ExtResource("2_rarhs")]
-offset_bottom = -10.0
-
-[node name="Debug" type="CanvasLayer" parent="MapGenerator" unique_id=1457225706]
-script = ExtResource("4_c01mt")
-
-[node name="DebugUI" parent="MapGenerator/Debug" unique_id=912732025 instance=ExtResource("3_vcsgt")]
-
-[node name="Resources" type="CanvasLayer" parent="MapGenerator" unique_id=2099133590]
-script = ExtResource("7_q8u5g")
-
-[node name="ResourcesUI" parent="MapGenerator/Resources" unique_id=1356875824 instance=ExtResource("5_jlsqs")]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -600.0
-offset_right = 0.0
-offset_bottom = 746.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Buildings" parent="." unique_id=625797992 instance=ExtResource("11_wp0k4")]
-
-[node name="Citizens" type="Node2D" parent="." unique_id=803649408]
-script = ExtResource("7_nxtc6")
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1077473060]
+position = Vector2(1000, 750)
