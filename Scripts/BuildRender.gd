@@ -41,6 +41,12 @@ func _draw_building(building_id: int) -> void:
 
 func _clear_building(building_id: int) -> void:
 	var b = BuildManager.GetBuilding(building_id)
-	# Внимание: если RemoveBuilding уже erase'нул, нужен другой подход —
-	# либо чистить клетки ДО erase, либо хранить snapshot клеток
-	pass
+	if b == null:
+		return
+	var bp = BuildManager.GetBlueprint(b.blueprint_id)
+	if bp == null:
+		return
+	
+	for cell in bp.cells:
+		var tile = b.origin + cell.offset
+		buildings_layer.set_cell(tile, -1)  # снять тайл

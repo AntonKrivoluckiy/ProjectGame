@@ -106,6 +106,16 @@ func _input(event: InputEvent):
 	var mouse_pos = get_global_mouse_position()
 	var tile_pos = tilemap.local_to_map(mouse_pos)
 	
+	# Bulldoze
+	if BuildManager.bulldoze_mode:
+		if console and console.visible:
+			pass
+		elif _is_pointer_over_blocking_ui():
+			return
+		else:
+			BuildManager.TryDemolishAt(tile_pos)  # или RemoveBuilding через GetBuildingAtTile
+			return
+	
 	# Building
 	if BuildManager.selected_blueprint_id != "":
 		if console and console.visible:

@@ -100,9 +100,17 @@ func GetBuilding(id: int) -> Building:
 	return buildings.get(id, null)
 
 func RemoveBuilding(id: int) -> void:
-	if buildings.has(id):
-		buildings.erase(id)
-		building_remowed.emit(id)
+	if not buildings.has(id):
+		return
+	var b = buildings[id]
+	var bp = GetBlueprint(b.blueprint_id)
+	if bp:
+		_mark_cells_occupied(b.blueprint_id, b.origin, false)
+		ResourcesManager.wood += int(bp.cost_wood * 0.5)
+	
+	# render должен очистить тайлы, пока building ещё в словаре:
+	building_remowed.emit(id)
+	buildings.erase(id)
 
 func GetBuildingAtTile(tile: Vector2i) -> Building:
 	for b in buildings.values():
@@ -115,11 +123,22 @@ func GetBuildingAtTile(tile: Vector2i) -> Building:
 	return null
 
 var selected_blueprint_id = "" # "" - ничего не выбрано
+var bulldoze_mode: bool = false
+
+func SetBulldozeMode(enabled: bool) -> void:
+	bulldoze_mode = enabled
+	if enabled:
+		selected_blueprint_id = ""  # нельзя строить и сносить сразу
+	selection_changed.emit(selected_blueprint_id)
+
+func ToggleBulldozeMode() -> void:
+	SetBulldozeMode(not bulldoze_mode)
 
 signal selection_changed(blueprint_id: String)
 
 func SelectBlueprint(blueprint_id: String) -> void:
 	# повторный клик - снять выбор
+	bulldoze_mode = false
 	if selected_blueprint_id == blueprint_id:
 		selected_blueprint_id = ""
 	else:
@@ -210,3 +229,32 @@ func _mark_cells_occupied(blueprint_id: String, origin: Vector2i, occupied: bool
 			map_cell.have_builds = false
 			map_cell.walk = map_cell.base_walk
 			map_cell.walk_speed = map_cell.base_walk_speed
+			
+func TryDemolishAt(tile: Vector2i) -> bool:
+	var b = GetBuildingAtTile(tile)
+	if b == null:
+		return false
+	
+	var bp = GetBlueprint(b.blueprint_id)
+	if bp == null:
+		return false
+	
+	var origin = b.origin
+	var blueprint_id = b.blueprint_id
+	var id = b.id
+	
+	# 1) клетки карты обратно
+	_mark_cells_occupied(blueprint_id, origin, false)
+	
+	# 2) возврат 50% (целочисленно)
+	var refund_wood = int(bp.cost_wood * 0.5)  # 20 → 10, 10 → 5
+	ResourcesManager.wood += refund_wood
+	# если появятся cost_food — так же
+	
+	# 3) убрать из словаря + сигнал для render
+	# сигнал лучше с данными для очистки тайлов:
+	building_remowed.emit(id)
+	# или пока оставить emit(id), но чистить слой ДО erase — см. ниже
+	
+	buildings.erase(id)
+	return true
