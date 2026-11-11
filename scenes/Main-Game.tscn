@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dtrubj54wfdck" path="res://Scripts/OpenMenu.gd" id="1_t6e36"]
 [ext_resource type="PackedScene" uid="uid://csmotnf578exv" path="res://Map/MapGenerator.tscn" id="2_t6e36"]
 [ext_resource type="Script" uid="uid://cjifufn7t3w4j" path="res://Scripts/СameraControl.gd" id="3_6vtbp"]
+[ext_resource type="Script" uid="uid://b6cu4gwcv365y" path="res://Scripts/GameMenu_script.gd" id="4_2lmq3"]
 [ext_resource type="PackedScene" uid="uid://hu2bwcbrnrna" path="res://scenes/GameMenu.tscn" id="4_6vtbp"]
 [ext_resource type="PackedScene" uid="uid://bw5qa5jmcutk0" path="res://scenes/BuildMenuUI.tscn" id="4_hs4ij"]
 [ext_resource type="PackedScene" uid="uid://d23dxtcw7u3qb" path="res://console/ConsoleUI.tscn" id="5_2lmq3"]
@@ -23,8 +24,10 @@ position = Vector2(1000, 746)
 script = ExtResource("3_6vtbp")
 
 [node name="GameMenu" type="CanvasLayer" parent="MapGenerator" unique_id=1178431837]
+script = ExtResource("4_2lmq3")
 
-[node name="Main Menu" parent="MapGenerator/GameMenu" unique_id=1785710981 instance=ExtResource("4_6vtbp")]
+[node name="GameMenu" parent="MapGenerator/GameMenu" unique_id=1785710981 instance=ExtResource("4_6vtbp")]
+script = null
 
 [node name="BuildMenu" type="CanvasLayer" parent="MapGenerator" unique_id=445518765]
 
@@ -44,17 +47,6 @@ script = ExtResource("6_stese")
 script = ExtResource("8_t414d")
 
 [node name="ResourcesUI" parent="MapGenerator/Resources" unique_id=1356875824 instance=ExtResource("9_w6rw3")]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -600.0
-offset_right = 0.0
-offset_bottom = 746.0
-grow_horizontal = 0
-grow_vertical = 2
 
 [node name="Buildings" parent="." unique_id=625797992 instance=ExtResource("10_mkgaw")]
 

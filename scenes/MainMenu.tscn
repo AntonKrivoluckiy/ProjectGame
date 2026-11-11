@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bdonq2a5pdcmo"]
 
-[ext_resource type="Script" uid="uid://ct28fcgcpu0kx" path="res://Scripts/MainMenu_script.gd" id="1_yqorp"]
+[ext_resource type="Script" uid="uid://jbkuicryktyy" path="res://Scripts/MainMenu_script.gd" id="1_yqorp"]
 
 [node name="Main Menu" type="Panel" unique_id=1785710981]
 anchors_preset = 7
