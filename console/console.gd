@@ -42,8 +42,6 @@ func _find_console_ui() -> void:
 		else:
 			console_ui = null
 			is_ready = false
-			print("Console: ConsoleUI не найден в текущей сцене")
-
 
 # Добавить сообщение в историю консоли
 func add_message(text: String) -> void:

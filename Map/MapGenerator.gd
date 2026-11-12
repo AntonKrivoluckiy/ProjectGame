@@ -97,6 +97,9 @@ func GenerateRegionMap() -> void:
 				var t: float = 1.0 - (pdist / peak_radius)
 				height = minf(height + t * t * peak_strength * island, 1.0)
 			
+			height = clampf(height + height_bias * island, 0.0, 1.0)
+			moisture = clampf(moisture + moisture_bias, 0.0, 1.0)
+			
 			var cell_type: int = _pick_biome(height, moisture, temperature)
 			var atlas: Vector2i = _atlas_for_type(cell_type)
 			
