@@ -49,6 +49,12 @@ func GenerateRegionMap() -> void:
 	tile_data.clear()
 	tilemap.clear()
 	
+	# --- настройки из меню ---
+	world_seed = MapGenSettings.world_seed
+	var height_bias: float = (MapGenSettings.height_level - 0.5) * 0.35
+	# 0% → -0.175, 50% → 0, 75% → +0.0875
+	var moisture_bias: float = (MapGenSettings.humidity_level - 0.5) * 0.4
+	
 	var rng := RandomNumberGenerator.new()
 	rng.randomize()
 	if world_seed == 0:
@@ -99,7 +105,9 @@ func GenerateRegionMap() -> void:
 	
 	TileDatabase.SetMapData(tile_data, MapWidth, MapHeight)
 	camera.update_bounds(MapWidth, MapHeight, TileSize)
-	print("Map generated. seed=", world_seed)
+	print("Map seed=", world_seed,
+			" height=", MapGenSettings.height_level,
+			" humidity=", MapGenSettings.humidity_level)
 
 func _make_noise(seed_value: int, frequency: float) -> FastNoiseLite:
 	var n := FastNoiseLite.new()
