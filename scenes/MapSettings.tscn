@@ -36,12 +36,37 @@ theme_override_font_sizes/font_size = 30
 text = "Average Height: "
 horizontal_alignment = 1
 
-[node name="HeightLine" type="LineEdit" parent="Settings" unique_id=1176394039]
+[node name="Height0" type="Button" parent="Settings" unique_id=946434760]
 layout_mode = 0
 offset_left = 170.0
 offset_top = 350.0
+offset_right = 270.0
+offset_bottom = 400.0
+text = "0%"
+
+[node name="Height25" type="Button" parent="Settings" unique_id=1852198374]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 350.0
+offset_right = 370.0
+offset_bottom = 400.0
+text = "25%"
+
+[node name="Height50" type="Button" parent="Settings" unique_id=609149994]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 350.0
+offset_right = 470.0
+offset_bottom = 400.0
+text = "50%"
+
+[node name="Height75" type="Button" parent="Settings" unique_id=1944366740]
+layout_mode = 0
+offset_left = 470.0
+offset_top = 350.0
 offset_right = 570.0
 offset_bottom = 400.0
+text = "75%"
 
 [node name="HumidityText" type="Label" parent="Settings" unique_id=1025180461]
 layout_mode = 0
@@ -53,12 +78,37 @@ theme_override_font_sizes/font_size = 30
 text = "Humidity:"
 horizontal_alignment = 1
 
-[node name="HumidityLine" type="LineEdit" parent="Settings" unique_id=239260070]
+[node name="Humidity0" type="Button" parent="Settings" unique_id=1909977457]
 layout_mode = 0
 offset_left = 170.0
 offset_top = 550.0
+offset_right = 270.0
+offset_bottom = 600.0
+text = "0%"
+
+[node name="Humidity25" type="Button" parent="Settings" unique_id=428358444]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 550.0
+offset_right = 370.0
+offset_bottom = 600.0
+text = "25%"
+
+[node name="Humidity50" type="Button" parent="Settings" unique_id=296693612]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 550.0
+offset_right = 470.0
+offset_bottom = 600.0
+text = "50%"
+
+[node name="Humidity75" type="Button" parent="Settings" unique_id=546436812]
+layout_mode = 0
+offset_left = 470.0
+offset_top = 550.0
 offset_right = 570.0
 offset_bottom = 600.0
+text = "75%"
 
 [node name="RivesText" type="Label" parent="Settings" unique_id=277171946]
 layout_mode = 0
@@ -70,12 +120,37 @@ theme_override_font_sizes/font_size = 30
 text = "Rives:"
 horizontal_alignment = 1
 
-[node name="RivesLine" type="LineEdit" parent="Settings" unique_id=228809108]
+[node name="Rives0" type="Button" parent="Settings" unique_id=217518268]
 layout_mode = 0
 offset_left = 170.0
 offset_top = 750.0
+offset_right = 270.0
+offset_bottom = 800.0
+text = "0%"
+
+[node name="Rives25" type="Button" parent="Settings" unique_id=321228784]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 750.0
+offset_right = 370.0
+offset_bottom = 800.0
+text = "25%"
+
+[node name="Rives50" type="Button" parent="Settings" unique_id=1775298197]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 750.0
+offset_right = 470.0
+offset_bottom = 800.0
+text = "50%"
+
+[node name="Rives75" type="Button" parent="Settings" unique_id=1095692836]
+layout_mode = 0
+offset_left = 470.0
+offset_top = 750.0
 offset_right = 570.0
 offset_bottom = 800.0
+text = "75%"
 
 [node name="PopulationText" type="Label" parent="Settings" unique_id=2127719927]
 layout_mode = 0
@@ -87,12 +162,37 @@ theme_override_font_sizes/font_size = 30
 text = "Population:"
 horizontal_alignment = 1
 
-[node name="PopulationLine" type="LineEdit" parent="Settings" unique_id=28288927]
+[node name="Population0" type="Button" parent="Settings" unique_id=82310697]
 layout_mode = 0
 offset_left = 170.0
 offset_top = 950.0
+offset_right = 270.0
+offset_bottom = 1000.0
+text = "0%"
+
+[node name="Population25" type="Button" parent="Settings" unique_id=490328009]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 950.0
+offset_right = 370.0
+offset_bottom = 1000.0
+text = "25%"
+
+[node name="Population50" type="Button" parent="Settings" unique_id=478910777]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 950.0
+offset_right = 470.0
+offset_bottom = 1000.0
+text = "50%"
+
+[node name="Population75" type="Button" parent="Settings" unique_id=601356233]
+layout_mode = 0
+offset_left = 470.0
+offset_top = 950.0
 offset_right = 570.0
 offset_bottom = 1000.0
+text = "75%"
 
 [node name="StartButton" type="Button" parent="Settings" unique_id=1128851220]
 layout_mode = 1
