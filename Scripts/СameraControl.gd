@@ -4,7 +4,7 @@ var ZoomTarget: Vector2
 var ZoomSpeed: float = 10
 
 var MaxZoom = 5.0
-var MinZoom = 0.5
+var MinZoom = 0.2
 
 var MapLeft = 0
 var MapRight = 0

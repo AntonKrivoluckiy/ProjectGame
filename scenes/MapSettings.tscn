@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://c2u1fkd5x6a1l"]
+
+[ext_resource type="Script" uid="uid://blr28s5r0n1nu" path="res://Scripts/MapSettings.gd" id="1_n54lr"]
+
+[node name="MapSettings" type="Node2D" unique_id=1043570831]
+
+[node name="Settings" type="Panel" parent="." unique_id=780546566]
+offset_right = 2000.0
+offset_bottom = 1500.0
+script = ExtResource("1_n54lr")
+
+[node name="SeedText" type="Label" parent="Settings" unique_id=1796310789]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 100.0
+offset_right = 570.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 30
+text = "Map Seed:"
+horizontal_alignment = 1
+
+[node name="SeedLine" type="LineEdit" parent="Settings" unique_id=2074384833]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 150.0
+offset_right = 570.0
+offset_bottom = 200.0
+
+[node name="HeightText" type="Label" parent="Settings" unique_id=2119915016]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 300.0
+offset_right = 570.0
+offset_bottom = 350.0
+theme_override_font_sizes/font_size = 30
+text = "Average Height: "
+horizontal_alignment = 1
+
+[node name="HeightLine" type="LineEdit" parent="Settings" unique_id=1176394039]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 350.0
+offset_right = 570.0
+offset_bottom = 400.0
+
+[node name="HumidityText" type="Label" parent="Settings" unique_id=1025180461]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 500.0
+offset_right = 570.0
+offset_bottom = 550.0
+theme_override_font_sizes/font_size = 30
+text = "Humidity:"
+horizontal_alignment = 1
+
+[node name="HumidityLine" type="LineEdit" parent="Settings" unique_id=239260070]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 550.0
+offset_right = 570.0
+offset_bottom = 600.0
+
+[node name="RivesText" type="Label" parent="Settings" unique_id=277171946]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 700.0
+offset_right = 570.0
+offset_bottom = 750.0
+theme_override_font_sizes/font_size = 30
+text = "Rives:"
+horizontal_alignment = 1
+
+[node name="RivesLine" type="LineEdit" parent="Settings" unique_id=228809108]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 750.0
+offset_right = 570.0
+offset_bottom = 800.0
+
+[node name="PopulationText" type="Label" parent="Settings" unique_id=2127719927]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 900.0
+offset_right = 570.0
+offset_bottom = 950.0
+theme_override_font_sizes/font_size = 30
+text = "Population:"
+horizontal_alignment = 1
+
+[node name="PopulationLine" type="LineEdit" parent="Settings" unique_id=28288927]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 950.0
+offset_right = 570.0
+offset_bottom = 1000.0
+
+[node name="StartButton" type="Button" parent="Settings" unique_id=1128851220]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -300.0
+offset_right = 200.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 35
+text = "Generate Map"
+
+[node name="BackButton" type="Button" parent="Settings" unique_id=26463093]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -300.0
+offset_right = -250.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 35
+text = "←"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1909135216]
+position = Vector2(1000, 750)

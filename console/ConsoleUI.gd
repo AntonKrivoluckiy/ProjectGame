@@ -82,7 +82,7 @@ func execute_command(command: String) -> void:
 		"/spawn":
 			if parts.size() > 1 and parts[1] == "citizen":
 				var spawn_value = 1
-				if parts[2] and parts[2].is_valid_int():
+				if parts.size() > 2 and parts[2].is_valid_int():
 					spawn_value = int(parts[2])
 				
 				for i in spawn_value:

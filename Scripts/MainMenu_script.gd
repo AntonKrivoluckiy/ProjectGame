@@ -11,7 +11,7 @@ func _input(event: InputEvent) -> void:
 	if Continue.button_pressed:
 		Heading.text = "Work in process"
 	elif StartGame.button_pressed:
-		get_tree().change_scene_to_file("res://scenes/Main-Game.tscn")
+		get_tree().change_scene_to_file("res://scenes/MapSettings.tscn")
 	elif LoadGame.button_pressed:
 		Heading.text = "Work in process"
 	elif Optios.button_pressed:
