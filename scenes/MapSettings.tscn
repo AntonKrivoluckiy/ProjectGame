@@ -117,7 +117,7 @@ offset_top = 700.0
 offset_right = 570.0
 offset_bottom = 750.0
 theme_override_font_sizes/font_size = 30
-text = "Rives:"
+text = "Rives (Work in process):"
 horizontal_alignment = 1
 
 [node name="Rives0" type="Button" parent="Settings" unique_id=217518268]
@@ -159,7 +159,7 @@ offset_top = 900.0
 offset_right = 570.0
 offset_bottom = 950.0
 theme_override_font_sizes/font_size = 30
-text = "Population:"
+text = "Population (Work in process):"
 horizontal_alignment = 1
 
 [node name="Population0" type="Button" parent="Settings" unique_id=82310697]

@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://boisln0ptlig5"]
+
+[ext_resource type="Texture2D" uid="uid://b2v8a5h0vkevh" path="res://Textures/Maple_1.png" id="1_y4dia"]
+[ext_resource type="Texture2D" uid="uid://cd334s13h276a" path="res://Textures/Oak_1.png" id="2_rna05"]
+[ext_resource type="Texture2D" uid="uid://cje6e4oaxiok7" path="res://Textures/Oak_2.png" id="3_i5n05"]
+[ext_resource type="Texture2D" uid="uid://cjb0m0qimsf4i" path="res://Textures/Bush_1.png" id="4_qvlck"]
+[ext_resource type="Texture2D" uid="uid://cyjg34ytt7745" path="res://Textures/Bush_2.png" id="5_dks4w"]
+[ext_resource type="Texture2D" uid="uid://ck3a5o8khk5nb" path="res://Textures/Grass_1.png" id="6_krqvc"]
+[ext_resource type="Texture2D" uid="uid://b6rv6ukio5fqo" path="res://Textures/Grass_2.png" id="7_koexe"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mtxbc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y4dia")
+}],
+"loop": 1,
+"name": &"Maple_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rna05")
+}],
+"loop": 1,
+"name": &"Oak_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_i5n05")
+}],
+"loop": 1,
+"name": &"Oak_2",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wnd53"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_qvlck")
+}],
+"loop": 1,
+"name": &"Bush_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_dks4w")
+}],
+"loop": 1,
+"name": &"Bush_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_krqvc")
+}],
+"loop": 1,
+"name": &"Grass_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_koexe")
+}],
+"loop": 1,
+"name": &"Grass_2",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_usgnq"]
+radius = 11.0
+height = 40.0
+
+[node name="Plants" type="Area2D" unique_id=630905407]
+
+[node name="TreesTexture" type="AnimatedSprite2D" parent="." unique_id=398082869]
+scale = Vector2(0.36, 0.36)
+sprite_frames = SubResource("SpriteFrames_mtxbc")
+animation = &"Oak_2"
+
+[node name="PlantsTexture" type="AnimatedSprite2D" parent="." unique_id=1805343414]
+sprite_frames = SubResource("SpriteFrames_wnd53")
+animation = &"Grass_2"
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1808509719]
+shape = SubResource("CapsuleShape2D_usgnq")
+disabled = true
